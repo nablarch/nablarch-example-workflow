@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+        xmlns="http://tis.co.jp/nablarch/component-configuration"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  /component-configuration.xsd">
+
+  <config-file file="classpath:nablarch/tool/definitioninfogenerator/loader/poi/definitioninfogenerator.config"/>
+
+  <!-- データタイプ定義 -->
+  <component name="domainDefinitionLoader"
+             class="nablarch.tool.definitioninfogenerator.loader.poi.DefinitionFileLoader">
+    <property name="pathToBook" value="${domainDefinitionFilePath}"/>
+    <!-- データ読み取り開始行 -->
+    <property name="startRowIndex" value="3"/>
+
+    <!-- 取得用keyは、<property name="indexNamePairs">のvalue値と合わせること -->
+    <!-- ドメイン定義（物理名）取得用key -->
+    <property name="keyName" value="dataTypeName"/>
+    <property name="columnDefs" ref="dataTypeDefinitionColumnDefs"/>
+    <!-- 取得対象外のシート名 -->
+    <property name="excludedSheets">
+      <list>
+        <value>表紙</value>
+        <value>変更履歴</value>
+        <value>目次</value>
+        <value>精査処理定義</value>
+        <value>ドメイン定義</value>
+      </list>
+    </property>
+  </component>
+
+  <!-- 設計書から取得する際の定義 -->
+  <component name="dataTypeDefinitionColumnDefs"
+             class="nablarch.tool.util.poi.XlsColumnDefs">
+    <property name="indexNamePairs">
+      <map>
+        <!-- key：Excelの列位置（0オリジン）、
+             value：データを取得する際のkey -->
+        <entry key="0" value="dataTypeName"/>
+        <entry key="1" value="lengthValidation"/>
+        <entry key="2" value="dataTypeValidation"/>
+        <entry key="3" value="arg1Name"/>
+        <entry key="4" value="arg1Value"/>
+        <entry key="5" value="arg2Name"/>
+        <entry key="6" value="arg2Value"/>
+        <entry key="7" value="arg3Name"/>
+        <entry key="8" value="arg3Value"/>
+        <entry key="9" value="arg4Name"/>
+        <entry key="10" value="arg4Value"/>
+        <entry key="11" value="arg5Name"/>
+        <entry key="12" value="arg5Value"/>
+        <entry key="13" value="comment"/>
+      </map>
+    </property>
+  </component>
+
+  <!-- 定義情報自動生成クラス -->
+  <component name="definitionInfoGenerator"
+             class="nablarch.tool.definitioninfogenerator.DefinitionInfoGenerator">
+    <!-- 出力ファイル名 -->
+    <property name="fileName" value="データタイプ定義"/>
+    <!-- 出力フォルダ -->
+    <property name="outputDir" value="${outputDir}"/>
+  </component>
+
+</component-configuration>

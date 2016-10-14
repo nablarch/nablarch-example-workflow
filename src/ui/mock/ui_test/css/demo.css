@@ -1,0 +1,12 @@
+span.test-case {
+    clear: both;
+    width: 95%;
+    margin-left: 5px;
+    padding-bottom: 7px;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 0.75em;
+    color: #3f3f43;
+    display: block;
+}
+

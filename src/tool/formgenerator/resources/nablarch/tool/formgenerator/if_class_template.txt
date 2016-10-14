@@ -1,0 +1,54 @@
+#PACKAGE#
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Map;
+import java.util.HashMap;
+
+import nablarch.core.validation.PropertyName;
+#VALIDATION_IMPORTS#
+
+/**
+ * $TABLE_LNAME$の情報を保持するクラス。
+ *
+ * $JAVA_CLASS$ クラスは $TABLE_LNAME$ レコードにマッピングされるフィールドを保持する。
+ *
+ * @author Entity Generator
+ * @since 1.0
+ */
+public abstract class $JAVA_CLASS$ implements Serializable {
+
+    /**
+     * serialVersionUID。
+     */
+    private static final long serialVersionUID = 1L;
+
+#FIELDS#
+
+    /**
+     * デフォルトコンストラクタ。
+     */
+    public $JAVA_CLASS$() {
+    }
+
+    /**
+     * Mapを引数にとるコンストラクタ。
+     * @param params 項目名をキーとし、項目値を値とするMap。
+     */
+    public $JAVA_CLASS$(Map<String, Object> params) {
+#PARAM_TO_FIELD#
+    }
+
+    /**
+     * プロパティの情報をMapに変換する。
+     *
+     * @return 変換後のMap
+     */
+    protected Map<String, Object> toMap() {
+        Map<String, Object> result = new HashMap<String, Object>();
+#FIELD_TO_MAP#
+        return result;
+    }
+#ACCESSORS#
+}

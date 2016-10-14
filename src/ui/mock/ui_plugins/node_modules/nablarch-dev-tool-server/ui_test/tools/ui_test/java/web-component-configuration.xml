@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  ./component-configuration.xsd">
+
+  <component name="webFrontController" class="nablarch.fw.web.servlet.WebFrontController">
+    <property name="handlerQueue">
+      <list />
+    </property>
+  </component>
+
+  <component name="customTagConfig" class="nablarch.common.web.tag.CustomTagConfig">
+    <property name="useHiddenEncryption" value="false" />
+  </component>
+
+  <component name="codeManager" class="ui_test.StubCodeManager" />
+
+</component-configuration>

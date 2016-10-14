@@ -1,0 +1,43 @@
+#PACKAGE#
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Map;
+
+import nablarch.core.db.statement.autoproperty.UserId;
+import nablarch.core.db.statement.autoproperty.CurrentDateTime;
+
+/**
+ * $TABLE_LNAME$テーブルの情報を保持するクラス。
+ *
+ * $JAVA_CLASS$ クラスは $TABLE_PNAME$ テーブルにマッピングされるテーブルフィールドを保持する。
+ *
+ * @author Entity Generator
+ * @since 1.0
+ */
+public class $JAVA_CLASS$ implements Serializable {
+
+    /**
+     * serialVersionUID。
+     */
+    private static final long serialVersionUID = 1L;
+
+#FIELDS#
+
+    /**
+     * デフォルトコンストラクタ。
+     */
+    public $JAVA_CLASS$() {
+    }
+
+    /**
+     * Mapを引数にとるコンストラクタ。
+     * @param params 項目名をキーとし、項目値を値とするMap。
+     */
+    public $JAVA_CLASS$(Map<String, Object> params) {
+#PARAM_TO_FIELD#
+    }
+
+#ACCESSORS#
+}

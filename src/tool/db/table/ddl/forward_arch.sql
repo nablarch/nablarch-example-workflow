@@ -1,0 +1,183 @@
+CREATE TABLE ID_GENERATE
+(
+    ID                             CHAR(4) NOT NULL,
+    NO                             NUMBER(10,0) NOT NULL
+)
+;
+ALTER TABLE ID_GENERATE
+    ADD(PRIMARY KEY (ID) USING INDEX)
+;
+CREATE TABLE UGROUP_SYSTEM_ACCOUNT
+(
+    USER_ID                        NCHAR(10) NOT NULL,
+    UGROUP_ID                      NCHAR(10) NOT NULL,
+    EFFECTIVE_DATE_FROM            NCHAR(8) NOT NULL,
+    EFFECTIVE_DATE_TO              NCHAR(8) NOT NULL
+)
+;
+ALTER TABLE UGROUP_SYSTEM_ACCOUNT
+    ADD(PRIMARY KEY (USER_ID, UGROUP_ID, EFFECTIVE_DATE_FROM) USING INDEX)
+;
+CREATE TABLE UGROUP
+(
+    UGROUP_ID                      NCHAR(10) NOT NULL,
+    UGROUP_NAME                    NVARCHAR2(50) NOT NULL
+)
+;
+ALTER TABLE UGROUP
+    ADD(PRIMARY KEY (UGROUP_ID) USING INDEX)
+;
+CREATE TABLE UGROUP_AUTHORITY
+(
+    UGROUP_ID                      NCHAR(10) NOT NULL,
+    PERMISSION_UNIT_ID             NCHAR(10) NOT NULL
+)
+;
+ALTER TABLE UGROUP_AUTHORITY
+    ADD(PRIMARY KEY (UGROUP_ID, PERMISSION_UNIT_ID) USING INDEX)
+;
+CREATE TABLE PERMISSION_UNIT
+(
+    PERMISSION_UNIT_ID             NCHAR(10) NOT NULL,
+    PERMISSION_UNIT_NAME           NVARCHAR2(100) NOT NULL
+)
+;
+ALTER TABLE PERMISSION_UNIT
+    ADD(PRIMARY KEY (PERMISSION_UNIT_ID) USING INDEX)
+;
+CREATE TABLE PERMISSION_UNIT_REQUEST
+(
+    REQUEST_ID                     NCHAR(10) NOT NULL,
+    PERMISSION_UNIT_ID             NCHAR(10) NOT NULL
+)
+;
+ALTER TABLE PERMISSION_UNIT_REQUEST
+    ADD(PRIMARY KEY (REQUEST_ID, PERMISSION_UNIT_ID) USING INDEX)
+;
+CREATE TABLE REQUEST
+(
+    REQUEST_ID                     NCHAR(10) NOT NULL,
+    REQUEST_NAME                   NVARCHAR2(100) NOT NULL,
+    SERVICE_AVAILABLE              CHAR(1) NOT NULL
+)
+;
+ALTER TABLE REQUEST
+    ADD(PRIMARY KEY (REQUEST_ID) USING INDEX)
+;
+CREATE TABLE SYSTEM_ACCOUNT
+(
+    USER_ID                        NCHAR(10) NOT NULL,
+    PASSWORD                       NVARCHAR2(44) NOT NULL,
+    USER_ID_LOCKED                 NCHAR(1) NOT NULL,
+    PASSWORD_EXPIRATION_DATE       NCHAR(8) NOT NULL,
+    FAILED_COUNT                   NUMBER(1,0) NOT NULL,
+    EFFECTIVE_DATE_FROM            NCHAR(8) NOT NULL,
+    EFFECTIVE_DATE_TO              NCHAR(8) NOT NULL,
+    VERSION                        NUMBER(10,0) DEFAULT 1 NOT NULL
+)
+;
+ALTER TABLE SYSTEM_ACCOUNT
+    ADD(PRIMARY KEY (USER_ID) USING INDEX)
+;
+CREATE TABLE SYSTEM_ACCOUNT_AUTHORITY
+(
+    USER_ID                        NCHAR(10) NOT NULL,
+    PERMISSION_UNIT_ID             NCHAR(10) NOT NULL
+)
+;
+ALTER TABLE SYSTEM_ACCOUNT_AUTHORITY
+    ADD(PRIMARY KEY (USER_ID, PERMISSION_UNIT_ID) USING INDEX)
+;
+CREATE TABLE USERS
+(
+    USER_ID                        NCHAR(10) NOT NULL,
+    KANJI_NAME                     NVARCHAR2(50) NOT NULL
+)
+;
+ALTER TABLE USERS
+    ADD(PRIMARY KEY (USER_ID) USING INDEX)
+;
+CREATE TABLE MESSAGE
+(
+    MESSAGE_ID                     VARCHAR2(10) NOT NULL,
+    LANG                           CHAR(2) NOT NULL,
+    MESSAGE                        NVARCHAR2(200) NOT NULL
+)
+;
+ALTER TABLE MESSAGE
+    ADD(PRIMARY KEY (MESSAGE_ID, LANG) USING INDEX)
+;
+CREATE TABLE BUSINESS_DATE
+(
+    SEGMENT                        CHAR(2) NOT NULL,
+    BIZ_DATE                       CHAR(8) NOT NULL
+)
+;
+ALTER TABLE BUSINESS_DATE ADD CONSTRAINT PK_BUSINESS_DATE
+    PRIMARY KEY (SEGMENT)
+;
+CREATE TABLE CODE_PATTERN
+(
+    ID                             CHAR(8) NOT NULL,
+    VALUE                          NVARCHAR2(2) NOT NULL,
+    PATTERN01                      CHAR(1) NOT NULL,
+    PATTERN02                      CHAR(1),
+    PATTERN03                      CHAR(1),
+    PATTERN04                      CHAR(1),
+    PATTERN05                      CHAR(1),
+    PATTERN06                      CHAR(1),
+    PATTERN07                      CHAR(1),
+    PATTERN08                      CHAR(1),
+    PATTERN09                      CHAR(1),
+    PATTERN10                      CHAR(1),
+    PATTERN11                      CHAR(1),
+    PATTERN12                      CHAR(1),
+    PATTERN13                      CHAR(1),
+    PATTERN14                      CHAR(1),
+    PATTERN15                      CHAR(1),
+    PATTERN16                      CHAR(1),
+    PATTERN17                      CHAR(1),
+    PATTERN18                      CHAR(1),
+    PATTERN19                      CHAR(1),
+    PATTERN20                      CHAR(1)
+)
+;
+ALTER TABLE CODE_PATTERN
+    ADD(PRIMARY KEY (ID, VALUE) USING INDEX)
+;
+CREATE TABLE CODE_NAME
+(
+    ID                             CHAR(8) NOT NULL,
+    VALUE                          NVARCHAR2(2) NOT NULL,
+    LANG                           CHAR(2) NOT NULL,
+    SORT_ORDER                     NUMBER(2,0) NOT NULL,
+    NAME                           NVARCHAR2(50) NOT NULL,
+    SHORT_NAME                     NVARCHAR2(50),
+    OPTION01                       NVARCHAR2(50),
+    OPTION02                       NVARCHAR2(50),
+    OPTION03                       NVARCHAR2(50),
+    OPTION04                       NVARCHAR2(50),
+    OPTION05                       NVARCHAR2(50),
+    OPTION06                       NVARCHAR2(50),
+    OPTION07                       NVARCHAR2(50),
+    OPTION08                       NVARCHAR2(50),
+    OPTION09                       NVARCHAR2(50),
+    OPTION10                       VARCHAR2(50)
+)
+;
+ALTER TABLE CODE_NAME
+    ADD(PRIMARY KEY (ID, VALUE, LANG) USING INDEX)
+;
+CREATE TABLE BATCH_REQUEST
+(
+    REQUEST_ID                      CHAR(10) NOT NULL,
+    REQUEST_NAME                    NVARCHAR2(100) NOT NULL,
+    PROCESS_HALT_FLG                CHAR(1) NOT NULL,
+    PROCESS_ACTIVE_FLG              CHAR(1) NOT NULL,
+    SERVICE_AVAILABLE               CHAR(1) NOT NULL,
+    RESUME_POINT                    NUMBER(10) NOT NULL
+)
+;
+ALTER TABLE BATCH_REQUEST
+        ADD(PRIMARY KEY (REQUEST_ID) USING INDEX)
+;

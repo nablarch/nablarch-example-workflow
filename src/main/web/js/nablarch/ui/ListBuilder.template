@@ -1,0 +1,12 @@
+<div style="text-align:center;">
+  <button type="button" class="addAll">&gt;&gt;</button>
+</div>
+<div style="text-align:center;">
+  <button type="button" class="add">&gt;</button>
+</div>
+<div style="text-align:center;">
+  <button type="button" class="remove">&lt;</button>
+</div>
+<div style="text-align:center;">
+  <button type="button" class="removeAll">&lt;&lt;</button>
+</div>

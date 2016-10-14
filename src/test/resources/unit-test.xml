@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+        xmlns="http://tis.co.jp/nablarch/component-configuration"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration ./component-configuration.xsd">
+
+  <config-file file="db.config"/>
+
+  <!-- mainの設定情報を読み込み -->
+  <import file="web-component-configuration.xml"/>
+  <!-- HTTPリクエスト単体テスト用の設定情報を読み込み -->
+  <import file="httprequesttest/http-test-configuration.xml"/>
+
+  <!-- mainの設定情報からの差分を読み込み -->
+  <import file="override.xml"/>
+
+  <!-- テストプロジェクトの共通設定 -->
+  <import file="test-common.xml"/>
+
+  <!-- 初期化が必要なコンポーネント -->
+  <component name="initializer"
+    class="nablarch.core.repository.initialization.BasicApplicationInitializer">
+    <property name="initializeList">
+      <list>
+        <!-- web/db.xml:条件オブジェクトのキャッシュ -->
+        <component-ref name="statementValueObjectCache" />
+        <!-- common/message.xml:文字列リソースのキャッシュ -->
+        <component-ref name="stringResourceCache" />
+        <!-- common/validation.xml:バリデーション情報のキャッシュ -->
+        <component-ref name="formDefinitionCache" />
+        <!-- common/validation.xml:バリデーション -->
+        <component-ref name="validationManager" />
+        <!-- web/handler/permissionCheck.xml:認証機能 -->
+        <component-ref name="permissionFactory" />
+        <!-- common/idgenerator.xml:ID採番モジュール -->
+        <component-ref name="idGenerator" />
+        <!-- common/date.xml:業務日付コンポーネント -->
+        <component-ref name="businessDateProvider" />
+        <!-- web/handler/serviceAvailability.xml:サービス提供可否 -->
+        <component-ref name="serviceAvailability" />
+        <!-- web/code.xml:コードのローダ -->
+        <component-ref name="codeLoader" />
+        <!-- web/code.xml:コードのキャッシュ -->
+        <component-ref name="codeCache" />
+        <!--  common/workflow.xml:ワークフローのDAO -->
+        <component-ref name="workflowInstanceDao" />
+        <!--  common/workflow.xml:ワークフローの定義ホルダー -->
+        <component-ref name="workflowDefinitionHolder" />
+      </list>
+    </property>
+  </component>
+
+  <!-- マスタデータ復旧クラス -->
+  <component name="masterDataRestorer"
+             class="nablarch.test.core.db.MasterDataRestorer">
+    <!-- バックアップスキーマ -->
+    <property name="backupSchema" value="workflow_sample_test_master"/>
+    <!-- 監視対象テーブル一覧 -->
+    <property name="tablesTobeWatched">
+      <list>
+        <value>SYSTEM_ACCOUNT</value>
+        <value>SYSTEM_ACCOUNT_AUTHORITY</value>
+        <value>UGROUP</value>
+        <value>UGROUP_AUTHORITY</value>
+        <value>UGROUP_SYSTEM_ACCOUNT</value>
+        <value>USERS</value>
+        <value>MESSAGE</value>
+        <value>ID_GENERATE</value>
+        <value>BUSINESS_DATE</value>
+        <value>PERMISSION_UNIT</value>
+        <value>REQUEST</value>
+        <value>PERMISSION_UNIT_REQUEST</value>
+        <value>BATCH_REQUEST</value>
+        <value>CODE_NAME</value>
+        <value>CODE_PATTERN</value>
+
+
+        <!--
+        以下テーブルはマスタデータを復元することで全データが削除されるテーブル
+        クリーンな状態でテストを実施するために、データのクリーニングを実施する。
+        -->
+        <value>TRANS_EXPE_APPLI_HISTORY</value>
+        <value>TRANS_EXPE_APPLICATION</value>
+        <value>LOAN_APPLICATION_HISTORY</value>
+        <value>LOAN_APPLICATION</value>
+        <value>WF_ACTIVE_GROUP_TASK</value>
+        <value>WF_ACTIVE_USER_TASK</value>
+        <value>WF_TASK_ASSIGNED_GROUP</value>
+        <value>WF_TASK_ASSIGNED_USER</value>
+        <value>WF_ACTIVE_FLOW_NODE</value>
+        <value>WF_INSTANCE_FLOW_NODE</value>
+        <value>WF_INSTANCE</value>
+      </list>
+    </property>
+  </component>
+
+  <!-- テストイベントリスナー一覧 -->
+  <list name="testEventListeners">
+    <component class="nablarch.test.RepositoryInitializer"/>
+    <component-ref name="masterDataRestorer"/>
+  </list>
+
+  <!-- エンティティテスト設定 -->
+  <component name="entityTestConfiguration" class="nablarch.test.core.entity.EntityTestConfiguration">
+    <property name="maxMessageId" value="MSG00024"/>
+    <property name="maxAndMinMessageId" value="MSG00011"/>
+    <property name="fixLengthMessageId" value="MSG00023"/>
+    <property name="underLimitMessageId" value="MSG00011"/>
+    <property name="emptyInputMessageId" value="MSG00010"/>
+    <property name="characterGenerator">
+      <component name="characterGenerator" class="nablarch.test.core.util.generator.BasicJapaneseCharacterGenerator"/>
+    </property>
+  </component>
+</component-configuration>

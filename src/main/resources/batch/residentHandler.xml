@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ハンドラの設定ファイル
+-->
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  ../component-configuration.xsd">
+
+  <!-- スレッドコンテキストに保持される共通属性を管理するハンドラ -->
+  <import file="batch/handler/threadcontext.xml" />
+  <!-- 常駐バッチのサービス提供可否状態を判定するハンドラ -->
+  <import file="batch/handler/serviceAvailability.xml" />
+  <!-- ２重起動防止ハンドラ -->
+  <import file="batch/handler/duplicateProcessCheck.xml" />
+  <!-- 常駐化ハンドラ -->
+  <import file="batch/handler/processResident.xml" />
+  <!-- 処理停止ハンドラ -->
+  <import file="batch/handler/residentProcessStop.xml" />
+  <!-- データベース接続ハンドラ -->
+  <import file="batch/handler/db.xml" />
+  <!--コミットログ実装-->
+  <component name="commitLogger"
+      class="nablarch.core.log.app.BasicCommitLogger">
+    <property name="interval" value="500" />
+  </component>
+  <!-- リトライハンドラ -->
+  <import file="batch/handler/retry.xml" />
+  <!-- 開閉局制御ハンドラ -->
+  <import file="batch/handler/serviceAvailability.xml"/>
+  
+  
+  <!-- ハンドラキュー構成 -->
+  <list name="handlerQueue">
+  
+    <!-- ステータスコードを終了コードに変換するハンドラ -->
+    <component class="nablarch.fw.handler.StatusCodeConvertHandler" />
+    
+    <!-- グローバルエラーハンドラ -->
+    <component class="nablarch.fw.handler.GlobalErrorHandler" />
+
+    <!-- スレッドコンテキスト設定ハンドラ -->
+    <component-ref name="threadContextHandler" />
+    
+    <!-- ２重起動防止ハンドラ -->
+    <component-ref name="duplicateProcessCheckHandler" />
+
+    <!-- リトライハンドラ -->
+    <component-ref name="retryHandler" />
+
+    <!-- 常駐化ハンドラ -->
+    <component-ref name="processResidentHandler" />
+
+    <!--処理停止ハンドラ-->
+    <component-ref name="processStopHandler" />
+    
+    <!-- サービス提供可否チェック -->
+    <component-ref name="serviceAvailabilityCheckHandler" />
+
+    <!-- FileRecordWriterの後処理を行うハンドラ -->
+    <component class="nablarch.common.io.FileRecordWriterDisposeHandler" />
+
+    <!-- データベース接続ハンドラ -->
+    <component-ref name="dbConnectionManagementHandler" />
+    
+    <!--トランザクションマネージャ-->
+    <component-ref name="transactionManagementHandler" />
+
+    <!-- ディスパッチ -->
+    <component class="nablarch.fw.handler.RequestPathJavaPackageMapping">
+      <property name="basePackage" value="please.change.me.tutorial" />
+      <property name="immediate" value="false" />
+    </component>
+
+    <!-- スレッド実行ハンドラ -->
+    <component class="nablarch.fw.handler.MultiThreadExecutionHandler">
+      <property name="concurrentNumber" value="${threadCount}" />
+      <property name="commitLogger" ref="commitLogger" />
+    </component>
+
+    <!-- データベース接続ハンドラ -->
+    <component-ref name="dbConnectionManagementHandler" />
+
+    <!-- ループ・トランザクション制御ハンドラ -->
+    <component class="nablarch.fw.handler.LoopHandler">
+      <property name="commitInterval" value="${commitInterval}" />
+      <property name="transactionFactory" ref="transactionFactory" />
+    </component>
+
+    <!-- データリードハンドラ -->
+    <component class="nablarch.fw.handler.DataReadHandler">
+      <property name="maxCount" value="${maxCount}" />
+    </component>
+  </list>
+</component-configuration>

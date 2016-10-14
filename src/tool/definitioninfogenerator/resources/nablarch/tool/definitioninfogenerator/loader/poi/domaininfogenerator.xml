@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+        xmlns="http://tis.co.jp/nablarch/component-configuration"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  /component-configuration.xsd">
+
+  <config-file file="classpath:nablarch/tool/definitioninfogenerator/loader/poi/definitioninfogenerator.config"/>
+
+  <!-- ドメイン定義 -->
+  <component name="domainDefinitionLoader"
+             class="nablarch.tool.definitioninfogenerator.loader.poi.DefinitionFileLoader">
+    <property name="pathToBook" value="${domainDefinitionFilePath}"/>
+    <!-- データ読み取り開始行 -->
+    <property name="startRowIndex" value="5"/>
+
+    <!-- 取得用keyは、<property name="indexNamePairs">のvalue値と合わせること -->
+    <!-- ドメイン定義（物理名）取得用key -->
+    <property name="keyName" value="physicalName"/>
+    <property name="columnDefs" ref="domainDefinitionColumnDefs"/>
+    <!-- 取得対象外のシート名 -->
+    <property name="excludedSheets">
+      <list>
+        <value>表紙</value>
+        <value>変更履歴</value>
+        <value>目次</value>
+        <value>精査処理定義</value>
+        <value>データタイプ定義</value>
+      </list>
+    </property>
+  </component>
+
+  <!-- 設計書から取得する際の定義 -->
+  <component name="domainDefinitionColumnDefs"
+             class="nablarch.tool.util.poi.XlsColumnDefs">
+    <property name="indexNamePairs">
+      <map>
+        <!-- key：Excelの列位置（0オリジン）、
+             value：データを取得する際のkey -->
+        <entry key="0" value="logicalName"/>
+        <entry key="14" value="dataType"/>
+        <entry key="18" value="intDigit"/>
+        <entry key="20" value="decimalDigit"/>
+        <entry key="36" value="physicalName"/>
+        <entry key="37" value="physicalDataType"/>
+        <entry key="38" value="domainDefinition"/>
+      </map>
+    </property>
+  </component>
+
+  <!-- 定義情報自動生成クラス -->
+  <component name="definitionInfoGenerator"
+             class="nablarch.tool.definitioninfogenerator.DefinitionInfoGenerator">
+    <!-- 出力ファイル名 -->
+    <property name="fileName" value="ドメイン定義"/>
+    <!-- 出力フォルダ -->
+    <property name="outputDir" value="${outputDir}"/>
+  </component>
+
+</component-configuration>

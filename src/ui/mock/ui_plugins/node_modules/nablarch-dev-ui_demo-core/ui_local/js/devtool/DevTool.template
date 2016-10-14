@@ -1,0 +1,43 @@
+<div
+  class='sourceView'
+  style="position:absolute;z-index:10000;background-color:white;display:none;top:0;left:0;">
+</div>
+
+<div id="devtool_content">
+  <!-- コンテキストメニュー -->
+  <ul id="contextMenu"
+      class="nablarch_ContextMenu">
+
+    <li class="specView">
+      <i class="fa fa-table"></i>
+      <span id="specSheetView">設計書ビューを開く</span>
+    </li>
+
+    <li class="sourceView">
+      <i class="fa fa-code"></i>
+      <span id="sourceView">ソースコードビューを開く</span>
+    </li>
+
+    <li class="usersGuide">
+      <i class="fa fa-book"></i>
+      <span>HTML/JSP作成ガイドを開く</span>
+    </li>
+
+    <li class="widgetList">
+      <i class="fa fa-question-circle"></i>
+      <span>ウィジェット一覧を開く</span>
+    </li>
+
+    <li class="generateForm">
+      <i class="fa fa-magic"></i>
+      <span>フォームクラスを生成する</span>
+    </li>
+
+    <li class="useDefaultMenu">
+      <i class="fa fa-external-link"></i>
+      <span>通常のメニューを使用する</span>
+    </li>
+
+  </ul>
+</div>
+

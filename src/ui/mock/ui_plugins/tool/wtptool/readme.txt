@@ -1,0 +1,8 @@
+本ツールはnode_module配下のプラグインをWTPのDeploymentAssemblyのリソースとして登録するツールである。
+本ツールを使用することで、各プラグインのui_publicやui_testディレクトリがWebコンテンツの
+ルートディレクトリとして認識されるため、IDEの持つ補完機能や構文チェック機能が使用できる。
+
+wtptool-build.xmlを指定しantを実行すると.settings/org.eclipse.wst.common.componentの内容が書き換えられ、
+node_module配下のプラグインがDeploymentAssemblyのリソースとして登録される。
+実行後、プロジェクトをリフレッシュすることで変更が反映される。
+

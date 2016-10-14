@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Form自動生成ツール" default="generate" basedir="../../">
+  <description>Form自動生成ツールを実行する。</description>
+  <property file="tool/formgenerator/formgen.properties"/>
+
+  <target name="generate"
+          description="自動生成を実行する。"
+          depends="generate-entity"/>
+
+  <target name="generate-entity"
+          description="テーブル定義書からEntityを生成する。">
+    <generate component-def="${entity.component-def.uri}"/>
+  </target>
+
+  <path id="lib.poi">
+    <fileset dir="${poi.lib.dir}">
+      <include name="*poi*.jar" />
+      <include name="*dom4j*.jar" />
+    </fileset>
+  </path>
+
+  <macrodef name="generate" description="Form自動生成ツールを起動する。">
+    <attribute name="component-def"/>
+    <sequential>
+      <java classname="nablarch.tool.formgenerator.helper.FormGenerator"
+            fork="true"
+            maxmemory="256m"
+            failonerror="true"
+            dir="${exec.dir}">
+        <arg value="@{component-def}"/>
+        <classpath>
+          <path location="${lib.nablarch-afw}"/>
+          <path location="${lib.nablarch-tfw}"/>
+          <path location="build/classes"/>
+          <path refid="lib.poi"/>
+          <path location="${lib.nablarch-toolbox}"/>
+          <path location="${lib.component-def}"/>
+        </classpath>
+      </java>
+    </sequential>
+  </macrodef>
+</project>
+

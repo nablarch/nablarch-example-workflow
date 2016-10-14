@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+２重サブミット制御用の設定ファイル
+-->
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration ../component-configuration.xsd">
+
+  <!-- ２重サブミット用設定 -->
+  <component name="doubleSubmissionHandler"
+      class="nablarch.common.web.token.BasicDoubleSubmissionHandler">
+    <!-- 入力画面に戻したいのでpathは各アクションで指定する。 -->
+    <property name="messageId" value="MSG00022" />
+    <property name="statusCode" value="200" />
+  </component>
+
+</component-configuration>

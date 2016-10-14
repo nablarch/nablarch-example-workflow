@@ -1,0 +1,27 @@
+define(function(){ return {"":""
+
+, "半角英字": ["文字列長精査", "文字種精査", "charsetDef", "alphaCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "半角数字": ["文字列長精査", "文字種精査", "charsetDef", "numericCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "半角カナ": ["文字列長精査", "文字種精査", "charsetDef", "hankakuKanaCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "半角英数字": ["文字列長精査", "文字種精査", "charsetDef", "alnumCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "半角英数字記号": ["文字列長精査", "文字種精査", "charsetDef", "asciiCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "半角文字": ["文字列長精査", "文字種精査", "charsetDef", "hankakuCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "全角ひらがな": ["文字列長精査", "文字種精査", "charsetDef", "zenkakuHiraganaCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "全角カタカナ": ["文字列長精査", "文字種精査", "charsetDef", "zenkakuKatakanaCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "全角文字": ["文字列長精査", "文字種精査", "charsetDef", "zenkakuCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "全角文字(外字含む)": ["文字列長精査", "文字種精査", "charsetDef", "zenkakuAndGaijiCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "全文字種(改行なし)": ["文字列長精査", "文字種精査", "charsetDef", "allCharset", "allowLineSeparator", "false", "messageId", "", "", "", "", "", ""]
+, "全文字種(改行あり)": ["文字列長精査", "文字種精査", "charsetDef", "allCharset", "allowLineSeparator", "true", "messageId", "", "", "", "", "", ""]
+, "数値": ["数値桁数精査", "-", "", "", "", "", "", "", "", "", "", "", ""]
+, "年月日": ["不要", "年月日精査", "allowFormat", "yyyyMMdd", "messageId", "", "", "", "", "", "", "", ""]
+, "年月": ["不要", "年月精査", "allowFormat", "yyyyMM", "messageId", "", "", "", "", "", "", "", ""]
+, "月日": ["不要", "月日精査", "", "MMdd", "", "false", "", "", "", "", "", "", ""]
+, "日時": ["不要", "-", "", "", "", "", "", "", "", "", "", "", ""]
+, "コード": ["不要", "コード値有効精査", "pattern", "", "", "", "", "", "", "", "", "", ""]
+, "メールアドレス": ["文字列長精査", "メールアドレス精査", "messageId", "", "", "", "", "", "", "", "", "", ""]
+, "日本電話番号": ["文字列長精査", "日本電話番号精査", "messageId", "", "", "", "", "", "", "", "", "", ""]
+, "パスワード": ["不要", "-", "", "", "", "", "", "", "", "", "", "", ""]
+, "年/月/日": ["不要", "年月日精査", "allowFormat", "yyyy/MM/dd", "messageId", "", "", "", "", "", "", "", ""]
+, "年/月": ["不要", "年月精査", "allowFormat", "yyyy/MM", "messageId", "", "", "", "", "", "", "", ""]
+
+};});

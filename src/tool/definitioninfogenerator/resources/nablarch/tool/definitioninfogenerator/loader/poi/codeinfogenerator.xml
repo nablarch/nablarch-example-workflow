@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+        xmlns="http://tis.co.jp/nablarch/component-configuration"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  /component-configuration.xsd">
+
+  <config-file file="classpath:nablarch/tool/definitioninfogenerator/loader/poi/definitioninfogenerator.config"/>
+
+  <!-- コード設計 -->
+  <component name="codeDefinitionLoader"
+             class="nablarch.tool.definitioninfogenerator.loader.poi.CodeDefinitionFileLoader">
+    <property name="pathToBook" value="${codeDesignFilePath}"/>
+    <!-- データ読み取り開始行 -->
+    <property name="startRowIndex" value="11"/>
+
+    <!-- 取得用keyは、<property name="indexNamePairs">のvalue値と合わせること -->
+    <!-- コードID取得用key -->
+    <property name="keyName" value="codeId"/>
+    <!-- コード名称取得用key
+    <property name="indexNamePairs">のvalue値と合わせること -->
+    <property name="codeNameKey" value="codeName"/>
+    <!-- コード説明取得用key
+    <property name="indexNamePairs">のvalue値と合わせること -->
+    <property name="codeDescriptionKey" value="codeDescription"/>
+    <!-- コード値に紐づく各種データの取得用key
+    <property name="indexNamePairs">のvalue値と合わせること -->
+    <property name="valueKeys">
+      <list>
+        <value>codeValue</value>
+        <value>sortOrder</value>
+        <value>codeValueName</value>
+        <value>SHORT_NAME</value>
+        <value>OPTIONAL_NAME01</value>
+        <value>OPTIONAL_NAME02</value>
+        <value>OPTIONAL_NAME03</value>
+        <value>OPTIONAL_NAME04</value>
+        <value>OPTIONAL_NAME05</value>
+        <value>OPTIONAL_NAME06</value>
+        <value>OPTIONAL_NAME07</value>
+        <value>OPTIONAL_NAME08</value>
+        <value>OPTIONAL_NAME09</value>
+        <value>OPTIONAL_NAME10</value>
+        <value>PATTERN01</value>
+        <value>PATTERN02</value>
+        <value>PATTERN03</value>
+        <value>PATTERN04</value>
+        <value>PATTERN05</value>
+        <value>PATTERN06</value>
+        <value>PATTERN07</value>
+        <value>PATTERN08</value>
+        <value>PATTERN09</value>
+        <value>PATTERN10</value>
+        <value>PATTERN11</value>
+        <value>PATTERN12</value>
+        <value>PATTERN13</value>
+        <value>PATTERN14</value>
+        <value>PATTERN15</value>
+        <value>PATTERN16</value>
+        <value>PATTERN17</value>
+        <value>PATTERN18</value>
+        <value>PATTERN19</value>
+        <value>PATTERN20</value>
+      </list>
+    </property>
+
+    <property name="columnDefs" ref="codeDesignColumnDefs"/>
+    <!-- 取得対象外のシート名 -->
+    <property name="excludedSheets">
+      <list>
+        <value>表紙</value>
+        <value>変更履歴</value>
+        <value>目次</value>
+        <value>en</value>
+      </list>
+    </property>
+  </component>
+
+  <!-- 設計書から取得する際の定義 -->
+  <component name="codeDesignColumnDefs"
+             class="nablarch.tool.util.poi.XlsColumnDefs">
+    <property name="indexNamePairs">
+      <map>
+        <!-- key：Excelの列位置（0オリジン）、
+             value：データを取得する際のkey -->
+        <entry key="0" value="codeId"/>
+        <entry key="2" value="codeName"/>
+        <entry key="6" value="codeDescription"/>
+        <entry key="12" value="codeValue"/>
+        <entry key="13" value="sortOrder"/>
+        <entry key="14" value="codeValueName"/>
+        <entry key="17" value="SHORT_NAME"/>
+        <entry key="19" value="OPTIONAL_NAME01"/>
+        <entry key="22" value="OPTIONAL_NAME02"/>
+        <entry key="25" value="OPTIONAL_NAME03"/>
+        <entry key="28" value="OPTIONAL_NAME04"/>
+        <entry key="31" value="OPTIONAL_NAME05"/>
+        <entry key="34" value="OPTIONAL_NAME06"/>
+        <entry key="37" value="OPTIONAL_NAME07"/>
+        <entry key="40" value="OPTIONAL_NAME08"/>
+        <entry key="43" value="OPTIONAL_NAME09"/>
+        <entry key="46" value="OPTIONAL_NAME10"/>
+        <entry key="49" value="PATTERN01"/>
+        <entry key="50" value="PATTERN02"/>
+        <entry key="51" value="PATTERN03"/>
+        <entry key="52" value="PATTERN04"/>
+        <entry key="53" value="PATTERN05"/>
+        <entry key="54" value="PATTERN06"/>
+        <entry key="55" value="PATTERN07"/>
+        <entry key="56" value="PATTERN08"/>
+        <entry key="57" value="PATTERN09"/>
+        <entry key="58" value="PATTERN10"/>
+        <entry key="59" value="PATTERN11"/>
+        <entry key="60" value="PATTERN12"/>
+        <entry key="61" value="PATTERN13"/>
+        <entry key="62" value="PATTERN14"/>
+        <entry key="63" value="PATTERN15"/>
+        <entry key="64" value="PATTERN16"/>
+        <entry key="65" value="PATTERN17"/>
+        <entry key="66" value="PATTERN18"/>
+        <entry key="67" value="PATTERN19"/>
+        <entry key="68" value="PATTERN20"/>
+      </map>
+    </property>
+  </component>
+
+  <!-- 定義情報自動生成クラス -->
+  <component name="definitionInfoGenerator"
+             class="nablarch.tool.definitioninfogenerator.DefinitionInfoGenerator">
+    <!-- 出力ファイル名 -->
+    <property name="fileName" value="コード値定義"/>
+    <!-- 出力フォルダ -->
+    <property name="outputDir" value="${outputDir}"/>
+  </component>
+
+</component-configuration>

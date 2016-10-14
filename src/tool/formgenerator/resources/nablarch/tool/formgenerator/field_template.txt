@@ -1,0 +1,5 @@
+    /**
+     * $PROP_LNAME$。
+     */
+#FIELD_ANNOTATION#
+    private $PROP_TYPE$ $PROP_PNAME$;

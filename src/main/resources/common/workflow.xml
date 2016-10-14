@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component-configuration xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration">
+
+  <component name="workflowConfig" class="nablarch.integration.workflow.WorkflowConfig">
+    <property name="workflowDefinitionHolder" ref="workflowDefinitionHolder" />
+    <property name="workflowInstanceDao" ref="workflowInstanceDao" />
+    <property name="workflowInstanceFactory">
+      <component class="nablarch.integration.workflow.BasicWorkflowInstanceFactory" />
+    </property>
+  </component>
+
+  <component name="workflowDefinitionHolder" class="nablarch.integration.workflow.definition.WorkflowDefinitionHolder">
+    <property name="workflowDefinitionLoader" ref="workflowLoader" />
+    <property name="systemTimeProvider" ref="systemTimeProvider" />
+  </component>
+
+  <component name="workflowLoader" class="nablarch.integration.workflow.definition.loader.DatabaseWorkflowDefinitionLoader">
+    <property name="transactionManager" ref="defaultDbTransactionManager" />
+    <property name="workflowDefinitionSchema" ref="workflowDefinitionSchema" />
+  </component>
+
+  <!-- プロセスインスタンス系テーブル -->
+  <component name="workflowInstanceDao" class="nablarch.integration.workflow.dao.WorkflowInstanceDao">
+    <property name="instanceIdGenerator" ref="idGenerator" />
+    <property name="instanceIdGenerateId" value="0000" />
+    <property name="workflowInstanceSchema" ref="workflowInstanceSchema" />
+  </component>
+</component-configuration>
+

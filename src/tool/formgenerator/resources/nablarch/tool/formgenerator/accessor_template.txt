@@ -1,0 +1,16 @@
+
+    /**
+     * $PROP_LNAME$を取得する。
+     * @return $PROP_LNAME$。
+     */
+    public $PROP_TYPE$ $GETTER$() {
+        return $PROP_PNAME$;
+    }
+
+    /**
+     * $PROP_LNAME$を設定する。
+     * @param $PROP_PNAME$ 設定する$PROP_LNAME$。
+     */
+    public void $SETTER$($PROP_TYPE$ $PROP_PNAME$) {
+        this.$PROP_PNAME$ = $PROP_PNAME$;
+    }

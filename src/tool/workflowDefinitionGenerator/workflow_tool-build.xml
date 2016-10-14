@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="workflowDefinitionGenerator" default="generate" basedir="../../">
+  <description>ワークフロー定義生成ツールを実行する。</description>
+  <property file="tool/workflowDefinitionGenerator/workflow_tool-build.properties"/>
+
+  <path id="main.lib">
+    <fileset dir="${main.lib.dir}">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <path id="test.lib">
+    <fileset dir="${test.lib.dir}">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <path id="tool.lib">
+    <fileset dir="${tool.lib.dir}">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <target name="generate" description="ワークフロー定義生成ツールを実行する。">
+    <java classname="nablarch.tool.workflow.WorkflowDefinitionGenerator"
+          fork="true"
+          maxmemory="256m"
+          failonerror="true"
+          dir="${exec.dir}">
+      <classpath>
+        <path refid="main.lib"/>
+        <path refid="test.lib"/>
+        <path refid="tool.lib"/>
+        <path location="${project.main.classes}"/>
+        <path location="${project.test.classes}"/>
+        <path location="${workflow.component-def.dir}"/>
+        <path location="${workflow.tool.component-def.dir}"/>
+      </classpath>
+      <arg value="classpath:WorkflowDefinitionGenerator.xml"/>
+    </java>
+  </target>
+</project>
+

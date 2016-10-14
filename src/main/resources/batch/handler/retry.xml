@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+リトライハンドラの設定ファイル
+-->
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  ../../component-configuration.xsd">
+
+  <!-- リトライハンドラ -->
+  <component name="retryHandler" class="nablarch.fw.handler.RetryHandler">
+    <property name="retryContextFactory">
+      <!-- 5分間で10回を超えるリトライが発生した場合はバッチを停止する。 -->
+      <component class="nablarch.fw.handler.retry.CountingRetryContextFactory">
+        <property name="maxRetryTime" value="300000" />
+        <property name="retryCount" value="10" />
+        <property name="retryIntervals" value="5000" />
+      </component>
+    </property>
+  </component>
+
+</component-configuration>
+    

@@ -1,0 +1,1 @@
+$PROP_PNAME$ = ($PROP_TYPE$) params.get("$PROP_PNAME$");

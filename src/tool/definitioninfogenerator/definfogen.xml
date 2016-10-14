@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="UI開発基盤用定義ファイル生成ツール" default="generate" basedir="../../">
+  <description>UI開発基盤用中間ファイル生成ツールを実行する。</description>
+  <property file="tool/definitioninfogenerator/definfogen.properties"/>
+
+  <target name="generate"
+          description="定義情報を生成する"
+          depends="generate-domainDef,generate-codeDef,generate-tableDef,generate-dataTypeDef,generate-validationDef"/>
+
+  <target name="generate-domainDef"
+          description="ドメイン定義情報を生成する">
+    <generate component-def="${domain-def.uri}"/>
+  </target>
+
+  <target name="generate-codeDef"
+          description="コード定義情報を生成する">
+    <generate component-def="${code-def.uri}"/>
+  </target>
+
+  <target name="generate-tableDef"
+          description="テーブル定義情報を生成する">
+    <generate component-def="${table-def.uri}"/>
+  </target>
+
+  <target name="generate-validationDef"
+          description="精査処理定義情報を生成する">
+    <generate component-def="${validation-def.uri}"/>
+  </target>
+
+  <target name="generate-dataTypeDef"
+          description="データタイプ定義情報を生成する">
+    <generate component-def="${dataType-def.uri}"/>
+  </target>
+
+  <path id="lib.poi">
+    <fileset dir="${poi.lib.dir}">
+      <include name="*poi*.jar" />
+      <include name="*dom4j*.jar" />
+    </fileset>
+  </path>
+
+  <macrodef name="generate" description="中間ファイル自動生成ツールを起動する。">
+    <attribute name="component-def"/>
+    <sequential>
+      <java classname="nablarch.tool.definitioninfogenerator.DefinitionInfoGenerator"
+            fork="true"
+            maxmemory="256m"
+            failonerror="true"
+            dir="${exec.dir}">
+        <arg value="@{component-def}"/>
+        <classpath>
+          <path location="${lib.nablarch-afw}"/>
+          <path location="${lib.nablarch-tfw}"/>
+          <path refid="lib.poi"/>
+          <path location="${lib.nablarch-toolbox}"/>
+          <path location="${lib.component-def}"/>
+        </classpath>
+      </java>
+    </sequential>
+  </macrodef>
+</project>
+

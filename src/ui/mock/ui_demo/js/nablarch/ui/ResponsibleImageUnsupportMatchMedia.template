@@ -1,0 +1,3 @@
+#{id} > div {
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='{contextPath}/img/wide/high/{filepath}', sizingMethod='scale')";
+}

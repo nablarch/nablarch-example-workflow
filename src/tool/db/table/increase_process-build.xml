@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="プロセス数増加" basedir="." default="プロセス数増加">
+
+    <!-- プロパティファイル名 -->
+    <property file="create_table-build.properties" />
+    <property file="../db.properties" />
+    <property environment="env" />
+
+    <!-- sqlplus -->
+    <condition property="sqlplus.exec"
+               value="/usr/lib/oracle/11.2/client/bin/sqlplus">
+        <os family="unix" />
+    </condition>
+    <condition property="sqlplus.exec" value="sqlplus.exe">
+        <os family="windows" />
+    </condition>
+
+    <target name="プロセス数増加">
+      <echo message="db = ${database.name}" />
+        <antcall target="_exec_sqlplus">
+            <param name="credential" value="system/${system.password}@${database.name} as sysdba" />
+            <param name="dir" value="ddl" />
+            <param name="filename" value="increase_process.sql" />
+        </antcall>
+    </target>
+
+    <target name="_exec_sqlplus" description="SQL*PLUSを実行">
+        <echo message="${dir}/${filename}を実行します。" />
+        <echo message="${env.ORACLE_HOME}:${sqlplus.exec}" />
+        <exec executable="${sqlplus.exec}" dir="${dir}" failonerror="true">
+            <env key="NLS_LANG" value="JAPANESE_JAPAN.UTF8" />
+            <env key="ORACLE_HOME" value="${env.ORACLE_HOME}" />
+            <arg value="${credential}" />
+            <arg value="@${filename}" />
+        </exec>
+    </target>
+
+</project>

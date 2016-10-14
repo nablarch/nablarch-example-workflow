@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- <%/* --> <script src="js/devtool.js"></script><meta charset="utf-8"><body> <!-- */%> -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="n" uri="http://tis.co.jp/nablarch" %>
+<%@ taglib prefix="field" tagdir="/WEB-INF/tags/widget/field" %>
+<%@ taglib prefix="button" tagdir="/WEB-INF/tags/widget/button" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags/template" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
+<t:ui_test_template
+  suite    = "ボックス/コンテンツ"
+  title    = "ボックスコンテンツ_サーバークライアント共通"
+  confirmationPageTitle="ボックス_サーバークライアント共通(確認画面)"
+  testpage = "サーバークライアント共通_テストページ.jsp"
+  testdata = "サーバークライアント共通_テストデータ.jsp"
+  testcase = "サーバークライアント共通_テストケース.js">
+  <jsp:attribute name="localJs">
+  </jsp:attribute>
+  <jsp:attribute name="localCss">
+  .cssBorder {
+    padding : 3px 0;
+    border : black solid 1px;
+  }
+  #idTest {
+    border : green solid 3px;
+  }
+  #content #html_test_css_default .nablarch_ResponsibleImage,
+  #content #html_test_css_blank .nablarch_ResponsibleImage,
+  #content #html_test_css .nablarch_ResponsibleImage{
+    width : 13em;
+  }
+  #content #owner_test .nablarch_ResponsibleImage {
+    width  : 10em;
+  }
+
+  #content .box.img .imageBackBlue {
+    border : blue solid 3px;
+    width : 30%;
+  }
+  </jsp:attribute>
+</t:ui_test_template>
