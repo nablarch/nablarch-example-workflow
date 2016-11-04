@@ -3,7 +3,7 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 
 group = 'com.nablarch.workflow'
-version = '1.0.0'
+version = '5u7'
 description = 'ワークフローライブラリサンプルアプリケーション'
 
 sourceCompatibility = 1.6
@@ -125,7 +125,7 @@ configurations {
   }
 }
 dependencies {
-  toolLib 'com.nablarch.framework:nablarch-testing:1.0.6'
+  toolLib 'com.nablarch.framework:nablarch-testing:1.0.7'
 }
  
 // ツール実行のためのライブラリを用意する。
