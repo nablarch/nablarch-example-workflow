@@ -3,7 +3,7 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 
 group = 'com.nablarch.workflow'
-version = '5u8'
+version = '5u9'
 description = 'ワークフローライブラリサンプルアプリケーション'
 
 sourceCompatibility = 1.6
@@ -45,7 +45,7 @@ repositories {
 }
 dependencyManagement {
   imports {
-    mavenBom 'com.nablarch.profile:nablarch-bom:5u8'
+    mavenBom 'com.nablarch.profile:nablarch-bom:5u9'
   }
   applyMavenExclusions false
 }
