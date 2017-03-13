@@ -304,7 +304,10 @@ public class CM111002Component extends DbAccessSupport {
         if (resultSet.isEmpty()) {
             return null;
         }
-        return resultSet.get(0);
+        SqlRow loanApplication = resultSet.get(0);
+        loanApplication.put("ANNUAL_SALARY", loanApplication.getInteger("ANNUAL_SALARY"));
+        loanApplication.put("LOAN_AMOUNT", loanApplication.getInteger("LOAN_AMOUNT"));
+        return loanApplication;
     }
 
     /**
