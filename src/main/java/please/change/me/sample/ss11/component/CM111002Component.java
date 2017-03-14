@@ -2,6 +2,7 @@ package please.change.me.sample.ss11.component;
 
 import static please.change.me.sample.ss11.component.LoanApplicationConstant.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,18 +62,16 @@ public class CM111002Component extends DbAccessSupport {
      */
     public void executeAutoScreening(String loanApplicationId) {
 
-        SqlRow loanApplication = findLoanApplication(loanApplicationId);
-
         LoanApplicationHistoryEntity loanApplicationHistoryEntity = new LoanApplicationHistoryEntity();
 
         loanApplicationHistoryEntity.setLoanAppliId(loanApplicationId);
         loanApplicationHistoryEntity.setLoanAppliActionCd(AUTO_SCREENED);
 
-        LoanApplicationEntity loanApplicationEntity = new LoanApplicationEntity(loanApplication);
+        LoanApplicationEntity loanApplicationEntity = findLoanApplication(loanApplicationId);
         Map<String, LoanApplicationEntity> parameter = new HashMap<String, LoanApplicationEntity>();
         parameter.put("loanApplication", loanApplicationEntity);
 
-        WorkflowInstance workflow = WorkflowManager.findInstance(loanApplication.getString("WF_INSTANCE_ID"));
+        WorkflowInstance workflow = WorkflowManager.findInstance(loanApplicationEntity.getWfInstanceId());
         workflow.completeUserTask(parameter);
 
         if (workflow.isActive(SURVEY_TASK_ID)) {
@@ -100,11 +99,10 @@ public class CM111002Component extends DbAccessSupport {
      */
     public void executeSurvey(LoanApplicationEntity applicationEntity, LoanApplicationHistoryEntity historyEntity) {
 
-        SqlRow loanApplication = findLoanApplication(applicationEntity.getLoanAppliId());
-
         Map<String, Integer> param = new HashMap<String, Integer>();
         param.put("condition", CONDITION_OK);
-        WorkflowManager.findInstance(loanApplication.getString("WF_INSTANCE_ID")).completeUserTask(param);
+        LoanApplicationEntity entity = findLoanApplication(applicationEntity.getLoanAppliId());
+        WorkflowManager.findInstance(entity.getWfInstanceId()).completeUserTask(param);
 
         applicationEntity.setLoanAppliStatusCd(WAIT_JUDGING);
         updateStatusAndSurveyContent(applicationEntity);
@@ -124,12 +122,11 @@ public class CM111002Component extends DbAccessSupport {
             LoanApplicationEntity loanApplicationEntity,
             LoanApplicationHistoryEntity loanApplicationHistoryEntity) {
 
-        SqlRow loanApplication = findLoanApplication(loanApplicationEntity.getLoanAppliId());
-
         Map<String, Integer> parameter = new HashMap<String, Integer>();
         parameter.put("condition", CONDITION_REJECT);
 
-        WorkflowManager.findInstance(loanApplication.getString("WF_INSTANCE_ID")).completeUserTask(parameter);
+        LoanApplicationEntity entity = findLoanApplication(loanApplicationEntity.getLoanAppliId());
+        WorkflowManager.findInstance(entity.getWfInstanceId()).completeUserTask(parameter);
 
         loanApplicationEntity.setLoanAppliStatusCd(REJECTION_STATUS);
         updateStatusAndSurveyContent(loanApplicationEntity);
@@ -151,13 +148,13 @@ public class CM111002Component extends DbAccessSupport {
             LoanApplicationHistoryEntity loanApplicationHistoryEntity,
             String groupId) {
 
-        SqlRow loanApplication = findLoanApplication(loanApplicationEntity.getLoanAppliId());
+        LoanApplicationEntity entity = findLoanApplication(loanApplicationEntity.getLoanAppliId());
 
         Map<String, Object> parameter = new HashMap<String, Object>();
         parameter.put("condition", CONDITION_OK);
-        parameter.put("limit", loanApplication.getBigDecimal("loanAmount"));
+        parameter.put("limit", BigDecimal.valueOf(entity.getLoanAmount()));
 
-        WorkflowInstance workflow = WorkflowManager.findInstance(loanApplication.getString("WF_INSTANCE_ID"));
+        WorkflowInstance workflow = WorkflowManager.findInstance(entity.getWfInstanceId());
         workflow.completeGroupTask(parameter, groupId);
 
         if (workflow.isActive(UPPER_LEVEL_JUDGING_TASK_ID)) {
@@ -183,12 +180,11 @@ public class CM111002Component extends DbAccessSupport {
     public void returnLoanApplication(LoanApplicationEntity loanApplicationEntity,
             LoanApplicationHistoryEntity loanApplicationHistoryEntity, String groupId) {
 
-        SqlRow loanApplication = findLoanApplication(loanApplicationEntity.getLoanAppliId());
-
         Map<String, Object> parameter = new HashMap<String, Object>();
         parameter.put("condition", CONDITION_RETURN);
 
-        WorkflowInstance workflow = WorkflowManager.findInstance(loanApplication.getString("WF_INSTANCE_ID"));
+        LoanApplicationEntity entity = findLoanApplication(loanApplicationEntity.getLoanAppliId());
+        WorkflowInstance workflow = WorkflowManager.findInstance(entity.getWfInstanceId());
         workflow.completeGroupTask(parameter, groupId);
 
         loanApplicationEntity.setLoanAppliStatusCd(WAIT_RE_INQUIRY_STATUS);
@@ -234,12 +230,11 @@ public class CM111002Component extends DbAccessSupport {
             LoanApplicationHistoryEntity loanApplicationHistoryEntity,
             String groupId) {
 
-        SqlRow loanApplication = findLoanApplication(loanApplicationEntity.getLoanAppliId());
-
         Map<String, Object> parameter = new HashMap<String, Object>();
         parameter.put("condition", CONDITION_OK);
 
-        WorkflowInstance workflow = WorkflowManager.findInstance(loanApplication.getString("WF_INSTANCE_ID"));
+        LoanApplicationEntity entity = findLoanApplication(loanApplicationEntity.getLoanAppliId());
+        WorkflowInstance workflow = WorkflowManager.findInstance(entity.getWfInstanceId());
         workflow.completeGroupTask(parameter, groupId);
 
         loanApplicationEntity.setLoanAppliStatusCd(WAIT_COMPLETION);
@@ -276,9 +271,8 @@ public class CM111002Component extends DbAccessSupport {
             LoanApplicationEntity loanApplicationEntity,
             LoanApplicationHistoryEntity loanApplicationHistoryEntity) {
 
-        SqlRow loanApplication = findLoanApplication(loanApplicationEntity.getLoanAppliId());
-
-        WorkflowInstance workflow = WorkflowManager.findInstance(loanApplication.getString("WF_INSTANCE_ID"));
+        LoanApplicationEntity entity = findLoanApplication(loanApplicationEntity.getLoanAppliId());
+        WorkflowInstance workflow = WorkflowManager.findInstance(entity.getWfInstanceId());
         workflow.completeUserTask();
 
         if (workflow.isCompleted()) {
@@ -297,14 +291,17 @@ public class CM111002Component extends DbAccessSupport {
      * @param loanApplicationId ローン申請ID
      * @return 取得したローン申請データ(データが存在しない場合はnull)
      */
-    public SqlRow findLoanApplication(String loanApplicationId) {
+    public LoanApplicationEntity findLoanApplication(String loanApplicationId) {
         SqlPStatement statement = getSqlPStatement("SELECT_LOAN_APPLICATION");
         statement.setString(1, loanApplicationId);
         SqlResultSet resultSet = statement.retrieve();
         if (resultSet.isEmpty()) {
             return null;
         }
-        return resultSet.get(0);
+        SqlRow loanApplication = resultSet.get(0);
+        loanApplication.put("ANNUAL_SALARY", loanApplication.getInteger("ANNUAL_SALARY"));
+        loanApplication.put("LOAN_AMOUNT", loanApplication.getInteger("LOAN_AMOUNT"));
+        return new LoanApplicationEntity(loanApplication);
     }
 
     /**
@@ -318,12 +315,11 @@ public class CM111002Component extends DbAccessSupport {
             LoanApplicationHistoryEntity loanApplicationHistoryEntity,
             String groupId) {
 
-        SqlRow loanApplication = findLoanApplication(loanApplicationEntity.getLoanAppliId());
-
         Map<String, Integer> parameter = new HashMap<String, Integer>();
         parameter.put("condition", CONDITION_REJECT);
 
-        WorkflowInstance workflow = WorkflowManager.findInstance(loanApplication.getString("WF_INSTANCE_ID"));
+        LoanApplicationEntity entity = findLoanApplication(loanApplicationEntity.getLoanAppliId());
+        WorkflowInstance workflow = WorkflowManager.findInstance(entity.getWfInstanceId());
         workflow.completeGroupTask(parameter, groupId);
 
         loanApplicationEntity.setLoanAppliStatusCd(REJECTION_STATUS);
