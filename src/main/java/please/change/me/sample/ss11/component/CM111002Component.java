@@ -152,7 +152,7 @@ public class CM111002Component extends DbAccessSupport {
 
         Map<String, Object> parameter = new HashMap<String, Object>();
         parameter.put("condition", CONDITION_OK);
-        parameter.put("limit", new BigDecimal(entity.getLoanAmount()));
+        parameter.put("limit", BigDecimal.valueOf(entity.getLoanAmount()));
 
         WorkflowInstance workflow = WorkflowManager.findInstance(entity.getWfInstanceId());
         workflow.completeGroupTask(parameter, groupId);
