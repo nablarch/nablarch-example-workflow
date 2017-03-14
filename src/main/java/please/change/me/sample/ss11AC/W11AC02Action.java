@@ -26,6 +26,7 @@ import please.change.me.sample.exclusive.ExclusiveLoanApplicationContext;
 import please.change.me.sample.ss11.component.CM111002Component;
 import nablarch.integration.workflow.WorkflowInstance;
 import nablarch.integration.workflow.WorkflowManager;
+import please.change.me.sample.ss11.entity.LoanApplicationEntity;
 
 /**
  * ローン申請のタスク進行アクション。
@@ -92,19 +93,19 @@ public class W11AC02Action extends DbAccessSupport {
                 new ExclusiveLoanApplicationContext(form.getLoanAppliId()));
 
         CM111002Component component = new CM111002Component();
-        SqlRow loanApplication = component.findLoanApplication(form.getLoanAppliId());
-        if (loanApplication == null) {
+        LoanApplicationEntity entity = component.findLoanApplication(form.getLoanAppliId());
+        if (entity == null) {
             throw new ApplicationException(MessageUtil.createMessage(MessageLevel.ERROR, "MSG00034"));
         }
 
-        WorkflowInstance workflow = WorkflowManager.findInstance(loanApplication.getString("wfInstanceId"));
+        WorkflowInstance workflow = WorkflowManager.findInstance(entity.getWfInstanceId());
         if (!hasActiveUserOrGroupTask(workflow, ctx)) {
             throw new ApplicationException(MessageUtil.createMessage(MessageLevel.ERROR, "MSG00034"));
         }
 
-        form.setSurveyContent(loanApplication.getString("SURVEY_CONTENT"));
+        form.setSurveyContent(entity.getSurveyContent());
 
-        ctx.setRequestScopedVar("loanApplication", loanApplication);
+        ctx.setRequestScopedVar("loanApplication", entity);
         ctx.setRequestScopedVar("history", findLoanApplicationHistory(form.getLoanAppliId()));
         ctx.setRequestScopedVar("surveyTask", workflow.isActive(SURVEY_TASK_ID));
         ctx.setRequestScopedVar("judgingTask", workflow.isActive(JUDGING_TASK_ID));
