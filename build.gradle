@@ -3,7 +3,7 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 
 group = 'com.nablarch.workflow'
-version = '5u9'
+version = '5u10'
 description = 'ワークフローライブラリサンプルアプリケーション'
 
 sourceCompatibility = 1.6
@@ -45,7 +45,7 @@ repositories {
 }
 dependencyManagement {
   imports {
-    mavenBom 'com.nablarch.profile:nablarch-bom:5u9'
+    mavenBom 'com.nablarch.profile:nablarch-bom:5u10'
   }
   applyMavenExclusions false
 }
@@ -123,9 +123,6 @@ configurations {
   toolLib {
     extendsFrom testRuntime
   }
-}
-dependencies {
-  toolLib 'com.nablarch.framework:nablarch-testing:1.0.7'
 }
  
 // ツール実行のためのライブラリを用意する。
