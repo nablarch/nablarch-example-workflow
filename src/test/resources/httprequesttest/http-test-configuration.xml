@@ -27,8 +27,8 @@ HTTPリクエスト単体テストを実施するための環境設定
         value="src/test/resources/httprequesttest/html-check-config.csv" />
 
     <!-- Htmlチェックツールを実行するか否かの設定 -->
-    <property name="checkHtml" value="true" />
-
+    <property name="checkHtml" value="false" />
+    
     <!-- ダンプディレクトリへコピーされるHTMLリソースの拡張子。 -->
     <property name="htmlResourcesExtensionList">
       <list>
@@ -46,17 +46,11 @@ HTTPリクエスト単体テストを実施するための環境設定
     </property>
     <!-- ダンプディレクトリへコピーされるHTMLリソースのルートディレクトリ。 -->
     <property name="htmlResourcesRoot" value="../htmlResources" />
-    <property name="backup" value="true" />
+    <property name="backup" value="false" />
     <property name="htmlResourcesCharset" value="UTF-8" />
     
     <!-- ダンプHTMLへの可変項目の出力可否 -->
     <property name="dumpVariableItem" value="false" />
-    
-    <property name="ignoreHtmlResourceDirectory">
-      <list>
-        <value>.svn</value>
-      </list>
-    </property>
 
     <property name="tempDirectory" value="work" />
   </component>

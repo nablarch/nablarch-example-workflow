@@ -10,7 +10,6 @@
         xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration ./component-configuration.xsd">
 
     <import file="override/date.xml" />
-    <import file="override/idgenerator.xml"/>
 
     <config-file file="override/config/list-search.config" />
 </component-configuration>

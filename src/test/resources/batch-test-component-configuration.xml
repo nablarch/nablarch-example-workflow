@@ -15,16 +15,12 @@
       class="nablarch.core.repository.initialization.BasicApplicationInitializer">
     <property name="initializeList">
       <list>
-        <!-- batch/db.xml:条件オブジェクトのキャッシュ -->
-        <component-ref name="statementValueObjectCache" />
         <!-- common/message.xml:文字列リソースのキャッシュ -->
         <component-ref name="stringResourceCache" />
         <!-- common/validation.xml:バリデーション情報のキャッシュ -->
         <component-ref name="formDefinitionCache" />
         <!-- common/validation.xml:バリデーション -->
         <component-ref name="validationManager" />
-        <!-- common/idgenerator.xml:ID採番モジュール -->
-        <component-ref name="idGenerator" />
         <!-- common/date.xml:業務日付コンポーネント -->
         <component-ref name="businessDateProvider" />
         <!-- common/code.xml:コードのローダ -->

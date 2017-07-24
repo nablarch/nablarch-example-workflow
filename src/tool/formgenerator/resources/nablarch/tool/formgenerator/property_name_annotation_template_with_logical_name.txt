@@ -1,1 +1,0 @@
-    @PropertyName("$PROP_LNAME$")
