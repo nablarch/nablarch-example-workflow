@@ -41,8 +41,6 @@
       class="nablarch.core.repository.initialization.BasicApplicationInitializer">
     <property name="initializeList">
       <list>
-        <!-- batch/db.xml:条件オブジェクトのキャッシュ -->
-        <component-ref name="statementValueObjectCache" />
         <!-- common/message.xml:文字列リソースのキャッシュ -->
         <component-ref name="stringResourceCache" />
         <!-- common/validation.xml:バリデーション情報のキャッシュ -->

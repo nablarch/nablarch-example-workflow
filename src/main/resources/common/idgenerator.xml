@@ -8,17 +8,6 @@ ID採番用の設定ファイル
     xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration ../component-configuration.xsd">
 
   <!-- 採番モジュールの設定(oracle sequenceによる) -->
-  <component name="idGenerator"
-      class="please.change.me.common.idgenerator.OracleSequenceIdGenerator">
-    <property name="idTable">
-      <map>
-        <entry key="0000" value="WF_INSTANCE_ID"/>
-        <entry key="1100" value="TRANS_EXPE_APPLI_ID"/>
-        <entry key="1101" value="LOAN_APPLI_ID"/>
-        <entry key="1102" value="TRANS_EXPE_APPLI_HISTORY_ID"/>
-        <entry key="1103" value="LOAN_APPLI_HISTORY_ID"/>
-      </map>
-    </property>
-  </component>
+  <component name="idGenerator" class="nablarch.common.idgenerator.SequenceIdGenerator" />
   
 </component-configuration>

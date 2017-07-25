@@ -124,3 +124,8 @@ work
 http_dump
 log/*
 !.gitkeep
+
+target
+
+*.db
+*.log

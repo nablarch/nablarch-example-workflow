@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component-configuration
     xmlns="http://tis.co.jp/nablarch/component-configuration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  ./component-configuration.xsd">
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  component-configuration.xsd">
 
     <!-- WEB用コンフィグファイルの読み込み -->
     <config-file file="web/web.config" />
@@ -40,8 +40,6 @@
         class="nablarch.core.repository.initialization.BasicApplicationInitializer">
         <property name="initializeList">
             <list>
-                <!-- web/db.xml:条件オブジェクトのキャッシュ -->
-                <component-ref name="statementValueObjectCache" />
                 <!-- common/message.xml:文字列リソースのキャッシュ -->
                 <component-ref name="stringResourceCache" />
                 <!-- common/validation.xml:バリデーション情報のキャッシュ -->

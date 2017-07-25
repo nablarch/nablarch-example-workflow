@@ -8,7 +8,7 @@
       class="nablarch.core.db.transaction.JdbcTransactionFactory">
     <property name="initSqlList">
       <list>
-        <value>alter session set CONSTRAINTS = DEFERRED</value>
+        <value>SET REFERENTIAL_INTEGRITY  false</value>
       </list>
     </property>
   </component>
@@ -38,9 +38,9 @@
   </component>
 
   <!-- DbInfo -->
-  <component name="dbInfo" class="please.change.me.test.core.db.Oracle16DbInfo">
+  <component name="dbInfo" class="nablarch.test.core.db.GenericJdbcDbInfo">
     <property name="dataSource" ref="dataSource"/>
-    <property name="schema" value="${db.user}"/>
+    <property name="schema" value="${nablarch.db.schema}"/>
   </component>
 
   <!-- テストデータ記法の解釈を行うクラス群 -->

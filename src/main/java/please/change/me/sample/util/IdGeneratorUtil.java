@@ -26,7 +26,7 @@ public final class IdGeneratorUtil {
      */
     public static String generateTransExpeAppliId() {
         IdGenerator generator = (IdGenerator) SystemRepository.getObject("idGenerator");
-        return generator.generateId("1100", new LpadFormatter(10, '0'));
+        return generator.generateId("TRANS_EXPE_APPLI_ID", new LpadFormatter(10, '0'));
     }
     
 
@@ -38,7 +38,7 @@ public final class IdGeneratorUtil {
      */
     public static String generateLoanAppliId() {
         IdGenerator generator = (IdGenerator) SystemRepository.getObject("idGenerator");
-        return generator.generateId("1101", new LpadFormatter(10, '0'));
+        return generator.generateId("LOAN_APPLI_ID", new LpadFormatter(10, '0'));
     }
 
     /**
@@ -49,7 +49,7 @@ public final class IdGeneratorUtil {
      */
     public static String generateTransExpeAppliHistoryId() {
         IdGenerator generator = (IdGenerator) SystemRepository.getObject("idGenerator");
-        return generator.generateId("1102", new LpadFormatter(12, '0'));
+        return generator.generateId("TRANS_EXPE_APPLI_HISTORY_ID", new LpadFormatter(12, '0'));
     }
     
 
@@ -61,6 +61,6 @@ public final class IdGeneratorUtil {
      */
     public static String generateLoanAppliHistoryId() {
         IdGenerator generator = (IdGenerator) SystemRepository.getObject("idGenerator");
-        return generator.generateId("1103", new LpadFormatter(12, '0'));
+        return generator.generateId("LOAN_APPLI_HISTORY_ID", new LpadFormatter(12, '0'));
     }
 }
