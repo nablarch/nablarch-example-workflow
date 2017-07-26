@@ -78,6 +78,10 @@ public class NewCardForm implements Serializable {
         this.annualIncome = annualIncome;
     }
 
+    /**
+     * 全てのプロパティに対するバリデーションを行う。
+     * @param context コンテキスト
+     */
     @ValidateFor("validate")
     public static void validate(final ValidationContext<NewCardForm> context) {
         ValidationUtil.validateAll(context);

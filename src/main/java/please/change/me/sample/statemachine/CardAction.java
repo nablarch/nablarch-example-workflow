@@ -223,6 +223,7 @@ public class CardAction extends DbAccessSupport {
          * インスタンスを生成する。
          *
          * @param id ID
+         * @param name 名前
          * @param annualIncome 年収
          * @param status ステータス
          */
