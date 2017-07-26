@@ -21,3 +21,10 @@ WF1102,1,ExclusiveGateway_2,L4,
 WF1102,1,ExclusiveGateway_3,L3,
 WF1102,1,ExclusiveGateway_4,L3,
 WF1102,1,ExclusiveGateway_5,L3,
+new-card,1,StartEvent_1vnsest,card_lane,
+new-card,1,EndEvent_0eryi9c,card_lane,
+new-card,1,sinsa_gateway,card_lane,
+new-card,1,new,card_lane,カード申し込み(審査待ち)
+new-card,1,manualSinsa,card_lane,人の審査
+new-card,1,sinsa_message,card_lane,
+new-card,1,manual_sinsa_message,card_lane,

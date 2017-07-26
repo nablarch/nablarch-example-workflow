@@ -27,4 +27,8 @@ WF1102,1,SequenceFlow_14,ExclusiveGateway_3,EndEvent_1,"nablarch.integration.wor
 WF1102,1,SequenceFlow_15,ExclusiveGateway_5,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
 WF1102,1,SequenceFlow_16,ExclusiveGateway_3,T002,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,2)",ç∑ñﬂÇµ
 WF1102,1,SequenceFlow_17,ExclusiveGateway_4,T005,"nablarch.integration.workflow.condition.LtFlowProceedCondition(limit,2000000)",xxxâ~ñ¢ñû
-
+new-card,1,SequenceFlow_0owxmd6,StartEvent_1vnsest,new,,
+new-card,1,SequenceFlow_0wclkza,sinsa_message,sinsa_gateway,,
+new-card,1,SequenceFlow_0t10jip,sinsa_gateway,EndEvent_0eryi9c,"nablarch.integration.workflow.condition.LtFlowProceedCondition(annualIncome, 100)",êRç∏NG
+new-card,1,SequenceFlow_117lju0,sinsa_gateway,manualSinsa,"nablarch.integration.workflow.condition.GeFlowProceedCondition(annualIncome, 100)",êRç∏OK
+new-card,1,SequenceFlow_0qgeyiz,manual_sinsa_message,EndEvent_0eryi9c,,
