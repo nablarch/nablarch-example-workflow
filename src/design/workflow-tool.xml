@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration component-configuration.xsd">
+
+  <!-- フロー進行条件クラスの省略記法設定 -->
+  <map name="flowProceedCondition">
+    <entry key="eq" value="nablarch.integration.workflow.condition.EqFlowProceedCondition"/>
+    <entry key="ge" value="nablarch.integration.workflow.condition.GeFlowProceedCondition"/>
+    <entry key="gt" value="nablarch.integration.workflow.condition.GtFlowProceedCondition"/>
+    <entry key="le" value="nablarch.integration.workflow.condition.LeFlowProceedCondition"/>
+    <entry key="lt" value="nablarch.integration.workflow.condition.LtFlowProceedCondition"/>
+    <entry key="ne" value="nablarch.integration.workflow.condition.NeFlowProceedCondition"/>
+  </map>
+
+  <!-- 完了条件クラスの省略記法設定 -->
+  <map name="completionCondition">
+    <entry key="all" value="nablarch.integration.workflow.condition.AllCompletionCondition"/>
+    <entry key="or" value="nablarch.integration.workflow.condition.OrCompletionCondition"/>
+  </map>
+
+  <import file="file:src/main/resources/common/workflow-schema.xml" />
+</component-configuration>

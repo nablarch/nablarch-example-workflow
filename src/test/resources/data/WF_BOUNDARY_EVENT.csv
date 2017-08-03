@@ -1,4 +1,4 @@
 WORKFLOW_ID,DEF_VERSION,FLOW_NODE_ID,BOUNDARY_EVENT_TRIGGER_ID,ATTACHED_TASK_ID
-WF1101,1,BoundaryEvent_1,BT01,T001
 new-card,1,sinsa_message,sinsa,new
 new-card,1,manual_sinsa_message,manual_sinsa,manualSinsa
+WF1101,1,BoundaryEvent_1,BT01,T001
