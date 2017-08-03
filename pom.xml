@@ -315,7 +315,9 @@
               <goal>execute</goal>
             </goals>
             <configuration>
-              <srcFiles>src/main/resources/ddl/sequence.sql</srcFiles>
+              <srcFiles>
+                <srcFile>src/main/resources/ddl/sequence.sql</srcFile>
+              </srcFiles>
             </configuration>
           </execution>
         </executions>
