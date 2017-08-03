@@ -1,34 +1,34 @@
 WORKFLOW_ID,DEF_VERSION,SEQUENCE_FLOW_ID,SOURCE_FLOW_NODE_ID,TARGET_FLOW_NODE_ID,FLOW_PROCEED_CONDITION,SEQUENCE_FLOW_NAME
-WF1101,1,SequenceFlow_01,StartEvent_1,T001,,
-WF1101,1,SequenceFlow_02,T001,ExclusiveGateway_1,,
-WF1101,1,SequenceFlow_03,ExclusiveGateway_1,T003,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,2)",ç∑ñﬂÇµ
-WF1101,1,SequenceFlow_04,BoundaryEvent_1,T003,,à¯ñﬂÇµ
-WF1101,1,SequenceFlow_05,T003,T001,,
-WF1101,1,SequenceFlow_06,ExclusiveGateway_1,T002,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",ämîFOK
-WF1101,1,SequenceFlow_07,ExclusiveGateway_1,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
-WF1101,1,SequenceFlow_08,T002,ExclusiveGateway_2,,
-WF1101,1,SequenceFlow_09,ExclusiveGateway_2,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
-WF1101,1,SequenceFlow_10,ExclusiveGateway_2,EndEvent_2,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",è≥îF
-WF1101,1,SequenceFlow_11,ExclusiveGateway_2,T001,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,2)",ç∑ñﬂÇµ
-WF1102,1,SequenceFlow_01,StartEvent_1,T001,,
-WF1102,1,SequenceFlow_02,T001,ExclusiveGateway_1,,
-WF1102,1,SequenceFlow_03,ExclusiveGateway_1,T002,please.change.me.sample.ss11.component.CM111004Component,êRç∏í âﬂ
-WF1102,1,SequenceFlow_04,T002,ExclusiveGateway_2,,
-WF1102,1,SequenceFlow_05,ExclusiveGateway_2,T003,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",í≤ç∏äÆóπ
-WF1102,1,SequenceFlow_06,T003,ExclusiveGateway_3,,
-WF1102,1,SequenceFlow_07,ExclusiveGateway_3,ExclusiveGateway_4,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",êRç∏í âﬂ
-WF1102,1,SequenceFlow_08,ExclusiveGateway_4,T004,"nablarch.integration.workflow.condition.GeFlowProceedCondition(limit,2000)",xxxâ~à»è„
-WF1102,1,SequenceFlow_09,T004,ExclusiveGateway_5,,
-WF1102,1,SequenceFlow_10,ExclusiveGateway_5,T005,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",è≥îF
-WF1102,1,SequenceFlow_11,T005,EndEvent_2,,
-WF1102,1,SequenceFlow_12,ExclusiveGateway_1,EndEvent_1,please.change.me.sample.ss11.component.CM111004Component,ãpâ∫
-WF1102,1,SequenceFlow_13,ExclusiveGateway_2,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
-WF1102,1,SequenceFlow_14,ExclusiveGateway_3,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
-WF1102,1,SequenceFlow_15,ExclusiveGateway_5,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
-WF1102,1,SequenceFlow_16,ExclusiveGateway_3,T002,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,2)",ç∑ñﬂÇµ
-WF1102,1,SequenceFlow_17,ExclusiveGateway_4,T005,"nablarch.integration.workflow.condition.LtFlowProceedCondition(limit,2000000)",xxxâ~ñ¢ñû
 new-card,1,SequenceFlow_0owxmd6,StartEvent_1vnsest,new,,
 new-card,1,SequenceFlow_0wclkza,sinsa_message,sinsa_gateway,,
 new-card,1,SequenceFlow_0t10jip,sinsa_gateway,EndEvent_0eryi9c,"nablarch.integration.workflow.condition.LtFlowProceedCondition(annualIncome, 100)",êRç∏NG
 new-card,1,SequenceFlow_117lju0,sinsa_gateway,manualSinsa,"nablarch.integration.workflow.condition.GeFlowProceedCondition(annualIncome, 100)",êRç∏OK
 new-card,1,SequenceFlow_0qgeyiz,manual_sinsa_message,EndEvent_0eryi9c,,
+WF1101,1,SequenceFlow_06,ExclusiveGateway_1,T002,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",ämîFOK
+WF1101,1,SequenceFlow_03,ExclusiveGateway_1,T003,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,2)",ç∑ñﬂÇµ
+WF1101,1,SequenceFlow_05,T003,T001,,
+WF1101,1,SequenceFlow_01,StartEvent_1,T001,,
+WF1101,1,SequenceFlow_02,T001,ExclusiveGateway_1,,
+WF1101,1,SequenceFlow_04,BoundaryEvent_1,T003,,à¯ñﬂÇµ
+WF1101,1,SequenceFlow_07,ExclusiveGateway_1,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
+WF1101,1,SequenceFlow_08,T002,ExclusiveGateway_2,,
+WF1101,1,SequenceFlow_11,ExclusiveGateway_2,T001,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,2)",ç∑ñﬂÇµ
+WF1101,1,SequenceFlow_10,ExclusiveGateway_2,EndEvent_2,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",è≥îF
+WF1101,1,SequenceFlow_09,ExclusiveGateway_2,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
+WF1102,1,SequenceFlow_17,ExclusiveGateway_4,T005,"nablarch.integration.workflow.condition.LtFlowProceedCondition(limit,2000000)",xxxâ~ñ¢ñû
+WF1102,1,SequenceFlow_08,ExclusiveGateway_4,T004,"nablarch.integration.workflow.condition.GeFlowProceedCondition(limit,2000)",xxxâ~à»è„
+WF1102,1,SequenceFlow_09,T004,ExclusiveGateway_5,,
+WF1102,1,SequenceFlow_10,ExclusiveGateway_5,T005,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",è≥îF
+WF1102,1,SequenceFlow_15,ExclusiveGateway_5,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
+WF1102,1,SequenceFlow_01,StartEvent_1,T001,,
+WF1102,1,SequenceFlow_11,T005,EndEvent_2,,
+WF1102,1,SequenceFlow_02,T001,ExclusiveGateway_1,,
+WF1102,1,SequenceFlow_03,ExclusiveGateway_1,T002,please.change.me.sample.ss11.component.CM111004Component,êRç∏í âﬂ
+WF1102,1,SequenceFlow_12,ExclusiveGateway_1,EndEvent_1,please.change.me.sample.ss11.component.CM111004Component,ãpâ∫
+WF1102,1,SequenceFlow_13,ExclusiveGateway_2,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
+WF1102,1,SequenceFlow_05,ExclusiveGateway_2,T003,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",í≤ç∏äÆóπ
+WF1102,1,SequenceFlow_04,T002,ExclusiveGateway_2,,
+WF1102,1,SequenceFlow_07,ExclusiveGateway_3,ExclusiveGateway_4,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,0)",êRç∏í âﬂ
+WF1102,1,SequenceFlow_14,ExclusiveGateway_3,EndEvent_1,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,1)",ãpâ∫
+WF1102,1,SequenceFlow_16,ExclusiveGateway_3,T002,"nablarch.integration.workflow.condition.EqFlowProceedCondition(condition,2)",ç∑ñﬂÇµ
+WF1102,1,SequenceFlow_06,T003,ExclusiveGateway_3,,
