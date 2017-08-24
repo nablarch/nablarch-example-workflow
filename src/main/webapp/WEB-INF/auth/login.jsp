@@ -1,26 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="n" uri="http://tis.co.jp/nablarch" %>
 <html>
 <head>
   <title>ワークフローサンプルアプリケーション</title>
-  
   <n:include path="/WEB-INF/common/include.jsp" />
-
   <style type="text/css">
+    body {
+      background-color: #DADADA;
+    }
+    
     body > .grid {
       height: 100%;
-    }
-
-    .image {
-      margin-top: -100px;
     }
 
     .column {
       max-width: 550px;
     }
-    
-    .ui.form {
+
+    .ui.large.form {
       max-width: 300px;
       margin: auto;
     }
@@ -29,7 +27,7 @@
 <body>
 <div class="ui middle aligned center aligned grid">
   <div class="column">
-    <h2 class="ui image header">
+    <h2 class="ui teal header">
       <span class="content">
         ワークフローサンプルアプリケーション
       </span>
@@ -52,5 +50,6 @@
       </div>
     </n:form>
   </div>
+</div>
 </body>
 </html>
