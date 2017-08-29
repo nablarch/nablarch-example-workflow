@@ -1,0 +1,11 @@
+<routes>
+  <root to="Auth#index" />
+ 
+  <!-- 認証 -->
+  <get path="/" to="Auth#index" />
+  <post path="/action/auth" to="Auth#login" />
+  
+  <!-- 承認一覧 -->
+  <get path="/action/approval" to="Approval#index" />
+  
+</routes>
