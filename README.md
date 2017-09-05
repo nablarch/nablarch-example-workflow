@@ -1,3 +1,9 @@
+# nablarch-example-workflow
+
+| master | develop |
+|:-----------|:------------|
+|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-workflow.svg?branch=master)](https://travis-ci.org/nablarch/nablarch-example-workflow)|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-workflow.svg?branch=develop)](https://travis-ci.org/nablarch/nablarch-example-workflow)|
+
 # ディレクトリについての補足
 
 | ディレクトリ               | 補足                                                                                                                                                                             |
@@ -35,3 +41,5 @@
 
 6.使用終了時は、左上のdisconnectボタン(赤色で書かれたアイコンのボタン)をクリックして切断する。
   **切断を忘れると、WebアプリからH2に接続できなくなる。**
+
+
