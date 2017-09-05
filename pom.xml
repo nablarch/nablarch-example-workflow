@@ -120,7 +120,7 @@
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jsr310-adaptor</artifactId>
-      <version>1.0.0</version>
+      <version>0.0.1</version>
     </dependency>
 
     <dependency>
