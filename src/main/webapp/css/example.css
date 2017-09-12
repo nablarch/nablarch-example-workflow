@@ -1,10 +1,16 @@
 .main.container {
   margin-top: 7em;
+  margin-bottom: 7em;
 }
 
-input.error {
+input.error, textarea.error {
   background-color: #fff6f6 !important;
   border-color: #e0b4b4 !important;
   color: #9f3a38 !important;
   box-shadow: none !important;
 }
+
+.ui.small.table {
+  font-size: 0.8em;
+}
+

@@ -1,5 +1,7 @@
 package please.change.me.validation;
 
+import please.change.me.validation.WorkflowDomainManager.WorkflowDomainBean;
+
 import nablarch.core.validation.ee.DomainManager;
 import nablarch.core.validation.ee.Length;
 import nablarch.core.validation.ee.NumberRange;
@@ -11,7 +13,7 @@ import nablarch.core.validation.ee.NumberRange;
  *
  * @author nabchan
  */
-public final class WorkflowDomainManager implements DomainManager<WorkflowDomainManager.WorkflowDomainBean> {
+public final class WorkflowDomainManager implements DomainManager<WorkflowDomainBean> {
 
     @Override
     public Class<WorkflowDomainBean> getDomainBean() {
@@ -32,5 +34,8 @@ public final class WorkflowDomainManager implements DomainManager<WorkflowDomain
 
         @Date
         public String 日付;
+
+        @Length(max = 100)
+        public String コメント;
     }
 }

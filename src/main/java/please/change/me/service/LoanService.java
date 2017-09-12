@@ -42,22 +42,25 @@ public class LoanService {
 
         final WorkflowInstance instance = WorkflowManager.startInstance("loan");
 
+        // 担当者割り当て
         instance.assignGroup("AUTO_SCREENING", AUTO_SCREENING_GROUP_ID);
         instance.assignUsersToLane("SURVEY_LANE", getSurveyUserList());
         instance.assignGroup("JUDGING", JUDGING_GROUP_ID);
         instance.assignGroup("UPPER_LEVEL_JUDGING", UPPER_LEVEL_JUDGING_GROUP_ID);
         
+        // ローン申請登録
         entity.setInsertDateTime(LocalDateTime.now());
         entity.setWfInstanceId(instance.getInstanceId());
-        entity.setLoanAppliStatusCd(LoanApplicationStatus.CREATED.getValue());
+        entity.setLoanAppliStatusCd(LoanApplicationStatus.CREATED.name());
         entity.setLoanAppliVersion(instance.getVersion());
         UniversalDao.insert(entity);
 
+        // ローン申請の履歴登録
         final LoanApplicationHistory history = new LoanApplicationHistory();
         history.setLoanAppliId(entity.getLoanAppliId());
         history.setExecutionerId(entity.getInsertUserId());
-        history.setLoanAppliActionCd(LoanApplicationApplyStatus.REGISTERED.getValue());
-        history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.getValue());
+        history.setLoanAppliActionCd(LoanApplicationApplyStatus.REGISTERED.name());
+        history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.name());
         history.setExecutionerId(entity.getInsertUserId());
         history.setExecutionDateTime(entity.getInsertDateTime());
         

@@ -21,10 +21,10 @@
         <flowNodeRef>JUDGING</flowNodeRef>
       </lane>
       <lane id="SURVEY_LANE" name="調査担当者">
-        <flowNodeRef>T005</flowNodeRef>
+        <flowNodeRef>EXECUTE</flowNodeRef>
         <flowNodeRef>EndEvent_2</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_2</flowNodeRef>
-        <flowNodeRef>T002</flowNodeRef>
+        <flowNodeRef>SURVEY_TASK</flowNodeRef>
       </lane>
     </laneSet>
     <startEvent id="StartEvent_1">
@@ -35,7 +35,7 @@
       <outgoing>SequenceFlow_17</outgoing>
       <outgoing>SequenceFlow_08</outgoing>
     </exclusiveGateway>
-    <sequenceFlow id="SequenceFlow_17" name="xxx円未満" sourceRef="ExclusiveGateway_4" targetRef="T005">
+    <sequenceFlow id="SequenceFlow_17" name="xxx円未満" sourceRef="ExclusiveGateway_4" targetRef="EXECUTE">
       <conditionExpression xsi:type="tFormalExpression">lt(limit,2000000)</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_08" name="xxx円以上" sourceRef="ExclusiveGateway_4" targetRef="UPPER_LEVEL_JUDGING">
@@ -52,11 +52,11 @@
       <outgoing>SequenceFlow_10</outgoing>
       <outgoing>SequenceFlow_15</outgoing>
     </exclusiveGateway>
-    <sequenceFlow id="SequenceFlow_10" name="承認" sourceRef="ExclusiveGateway_5" targetRef="T005">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,0)</conditionExpression>
+    <sequenceFlow id="SequenceFlow_10" name="承認" sourceRef="ExclusiveGateway_5" targetRef="EXECUTE">
+      <conditionExpression xsi:type="tFormalExpression">nablarch.integration.workflow.condition.StringEqualFlowProceedCondition(condition,ok)</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_15" name="却下" sourceRef="ExclusiveGateway_5" targetRef="EndEvent_1">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,1)</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">nablarch.integration.workflow.condition.StringEqualFlowProceedCondition(condition,ng)</conditionExpression>
     </sequenceFlow>
     <endEvent id="EndEvent_1">
       <incoming>SequenceFlow_15</incoming>
@@ -66,7 +66,7 @@
       <terminateEventDefinition />
     </endEvent>
     <sequenceFlow id="SequenceFlow_01" sourceRef="StartEvent_1" targetRef="AUTO_SCREENING" />
-    <userTask id="T005" name="実行">
+    <userTask id="EXECUTE" name="実行">
       <incoming>SequenceFlow_17</incoming>
       <incoming>SequenceFlow_10</incoming>
       <outgoing>SequenceFlow_11</outgoing>
@@ -78,7 +78,7 @@
       <incoming>SequenceFlow_11</incoming>
       <terminateEventDefinition />
     </endEvent>
-    <sequenceFlow id="SequenceFlow_11" sourceRef="T005" targetRef="EndEvent_2" />
+    <sequenceFlow id="SequenceFlow_11" sourceRef="EXECUTE" targetRef="EndEvent_2" />
     <userTask id="AUTO_SCREENING" name="内部自動審査">
       <incoming>SequenceFlow_01</incoming>
       <outgoing>SequenceFlow_02</outgoing>
@@ -89,11 +89,11 @@
       <outgoing>SequenceFlow_03</outgoing>
       <outgoing>SequenceFlow_12</outgoing>
     </exclusiveGateway>
-    <sequenceFlow id="SequenceFlow_03" name="審査通過" sourceRef="ExclusiveGateway_1" targetRef="T002">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,2)</conditionExpression>
+    <sequenceFlow id="SequenceFlow_03" name="審査通過" sourceRef="ExclusiveGateway_1" targetRef="SURVEY_TASK">
+      <conditionExpression xsi:type="tFormalExpression">please.change.me.domain.flowcondition.LoanAutoScreeningFlowCondition</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_12" name="却下" sourceRef="ExclusiveGateway_1" targetRef="EndEvent_1">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,1)</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">please.change.me.domain.flowcondition.LoanAutoScreeningFlowCondition</conditionExpression>
     </sequenceFlow>
     <exclusiveGateway id="ExclusiveGateway_2">
       <incoming>SequenceFlow_04</incoming>
@@ -101,12 +101,12 @@
       <outgoing>SequenceFlow_05</outgoing>
     </exclusiveGateway>
     <sequenceFlow id="SequenceFlow_13" name="却下" sourceRef="ExclusiveGateway_2" targetRef="EndEvent_1">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,1)</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">nablarch.integration.workflow.condition.StringEqualFlowProceedCondition(condition,ng)</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_05" name="調査完了" sourceRef="ExclusiveGateway_2" targetRef="JUDGING">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,0)</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">nablarch.integration.workflow.condition.StringEqualFlowProceedCondition(condition,ok)</conditionExpression>
     </sequenceFlow>
-    <userTask id="T002" name="調査">
+    <userTask id="SURVEY_TASK" name="調査">
       <documentation>調査結果を追加する。</documentation>
       <incoming>SequenceFlow_03</incoming>
       <incoming>SequenceFlow_16</incoming>
@@ -115,7 +115,7 @@
         <completionCondition xsi:type="tFormalExpression">or(1)</completionCondition>
       </multiInstanceLoopCharacteristics>
     </userTask>
-    <sequenceFlow id="SequenceFlow_04" sourceRef="T002" targetRef="ExclusiveGateway_2" />
+    <sequenceFlow id="SequenceFlow_04" sourceRef="SURVEY_TASK" targetRef="ExclusiveGateway_2" />
     <exclusiveGateway id="ExclusiveGateway_3">
       <incoming>SequenceFlow_06</incoming>
       <outgoing>SequenceFlow_07</outgoing>
@@ -123,13 +123,13 @@
       <outgoing>SequenceFlow_16</outgoing>
     </exclusiveGateway>
     <sequenceFlow id="SequenceFlow_07" name="審査通過" sourceRef="ExclusiveGateway_3" targetRef="ExclusiveGateway_4">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,0)</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">nablarch.integration.workflow.condition.StringEqualFlowProceedCondition(condition,ok)</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_14" name="却下" sourceRef="ExclusiveGateway_3" targetRef="EndEvent_1">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,1)</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">nablarch.integration.workflow.condition.StringEqualFlowProceedCondition(condition,ng)</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="SequenceFlow_16" name="差戻し" sourceRef="ExclusiveGateway_3" targetRef="T002">
-      <conditionExpression xsi:type="tFormalExpression">eq(condition,2)</conditionExpression>
+    <sequenceFlow id="SequenceFlow_16" name="差戻し" sourceRef="ExclusiveGateway_3" targetRef="SURVEY_TASK">
+      <conditionExpression xsi:type="tFormalExpression">nablarch.integration.workflow.condition.StringEqualFlowProceedCondition(condition,re)</conditionExpression>
     </sequenceFlow>
     <userTask id="JUDGING" name="判定">
       <documentation>キューモデル</documentation>
@@ -163,7 +163,7 @@
       <bpmndi:BPMNShape id="BPMNShape_s1001" bpmnElement="StartEvent_1">
         <omgdc:Bounds x="410" y="133" width="35" height="35" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_a1002" bpmnElement="T002">
+      <bpmndi:BPMNShape id="BPMNShape_a1002" bpmnElement="SURVEY_TASK">
         <omgdc:Bounds x="888" y="583" width="105" height="55" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_a1003" bpmnElement="JUDGING">
@@ -193,7 +193,7 @@
       <bpmndi:BPMNShape id="BPMNShape_t1001" bpmnElement="EndEvent_1">
         <omgdc:Bounds x="1970" y="130" width="35" height="35" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_a1005" bpmnElement="T005">
+      <bpmndi:BPMNShape id="BPMNShape_a1005" bpmnElement="EXECUTE">
         <omgdc:Bounds x="1830" y="593" width="105" height="55" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_g1002" bpmnElement="ExclusiveGateway_2" isMarkerVisible="true">
@@ -227,7 +227,7 @@
         <omgdi:waypoint xsi:type="omgdc:Point" x="1520" y="457" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1600" y="457" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1520" y="417" width="72" height="22" />
+          <omgdc:Bounds x="1531" y="417" width="51" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_f1016" bpmnElement="SequenceFlow_16">
@@ -271,7 +271,7 @@
         <omgdi:waypoint xsi:type="omgdc:Point" x="1324" y="147" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1970" y="147" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1332" y="384" width="36" height="22" />
+          <omgdc:Bounds x="1339" y="384" width="22" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_f1002" bpmnElement="SequenceFlow_02">
