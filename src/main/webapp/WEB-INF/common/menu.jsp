@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="n" uri="http://tis.co.jp/nablarch" %>
 <%@ page session="false" %>
 
@@ -10,6 +10,7 @@
       <div class="menu">
         <n:a href="/action/approval" cssClass="item">申請一覧</n:a>
         <n:a href="/action/loan/new" cssClass="item">ローン申請</n:a>
+        <n:a href="/action/card/new" cssClass="item">カード申し込み</n:a>
       </div>
     </div>
   </div>

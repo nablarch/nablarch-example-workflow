@@ -5,7 +5,7 @@ function initializer() {
   // dropdown
   $('.ui.dropdown').dropdown();
 
-  // clsoe message area
+  // close message area
   $('.message .close')
       .on('click', function () {
         $(this).closest('.message').transition('fade');

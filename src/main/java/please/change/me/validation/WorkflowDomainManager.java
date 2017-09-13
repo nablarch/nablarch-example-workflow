@@ -32,5 +32,8 @@ public final class WorkflowDomainManager implements DomainManager<WorkflowDomain
 
         @Date
         public String 日付;
+
+        @Length(max = 124)
+        public String 名前;
     }
 }
