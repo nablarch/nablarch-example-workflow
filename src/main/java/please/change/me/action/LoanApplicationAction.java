@@ -86,7 +86,7 @@ public class LoanApplicationAction {
     }
     
     /**
-     * ソーン申請を行う。
+     * ローン申請を行う。
      *
      * @param request リクエスト
      * @param context コンテキスト
