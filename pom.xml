@@ -230,7 +230,7 @@
               <goal>generate-csv</goal>
             </goals>
             <configuration>
-              <outputPath>src/test/resources/data</outputPath>
+              <outputPath>target/workflow/data</outputPath>
               <configurationFilePath>design/workflow-tool.xml</configurationFilePath>
               <workflowBpmnDir>design/camunda/workflow</workflowBpmnDir>
               <stateMachineBpmnDir>design/camunda/statemachine</stateMachineBpmnDir>
@@ -275,6 +275,16 @@
               <goal>generate-entity</goal>
               <goal>load-data</goal>
             </goals>
+          </execution>
+          <execution>
+            <id>load-workflow-data</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>load-data</goal>
+            </goals>
+            <configuration>
+              <dataDirectory>target/workflow/data</dataDirectory>
+            </configuration>
           </execution>
         </executions>
       </plugin>

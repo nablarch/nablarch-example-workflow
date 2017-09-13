@@ -1,9 +1,0 @@
-WORKFLOW_ID,DEF_VERSION,LANE_ID,LANE_NAME
-new-card,1,card_lane,カード申し込み
-loan,1,L1,お客様
-loan,1,L2,システム処理
-loan,1,L3,判定者
-loan,1,SURVEY_LANE,調査担当者
-WF1101,1,L1,申請者
-WF1101,1,L2,庶務
-WF1101,1,L3,承認者
