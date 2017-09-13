@@ -1,11 +1,11 @@
 WORKFLOW_ID,DEF_VERSION,FLOW_NODE_ID,MULTI_INSTANCE_TYPE,COMPLETION_CONDITION
 new-card,1,new,NONE,
 new-card,1,manualSinsa,NONE,
+loan,1,UPPER_LEVEL_JUDGING,NONE,
+loan,1,T005,SEQUENTIAL,nablarch.integration.workflow.condition.AllCompletionCondition
+loan,1,AUTO_SCREENING,NONE,
+loan,1,T002,PARALLEL,nablarch.integration.workflow.condition.OrCompletionCondition(1)
+loan,1,JUDGING,NONE,
 WF1101,1,T003,NONE,
 WF1101,1,T001,NONE,
 WF1101,1,T002,NONE,
-WF1102,1,T004,NONE,
-WF1102,1,T005,SEQUENTIAL,nablarch.integration.workflow.condition.AllCompletionCondition
-WF1102,1,T001,NONE,
-WF1102,1,T002,PARALLEL,nablarch.integration.workflow.condition.OrCompletionCondition(1)
-WF1102,1,T003,NONE,

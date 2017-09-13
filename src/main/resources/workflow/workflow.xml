@@ -24,7 +24,9 @@
 
   <!-- プロセスインスタンス系テーブル -->
   <component name="workflowInstanceDao" class="nablarch.integration.workflow.dao.WorkflowInstanceDao">
-    <property name="instanceIdGenerator" ref="idGenerator" />
+    <property name="instanceIdGenerator">
+      <component class="nablarch.common.idgenerator.SequenceIdGenerator" />
+    </property>
     <property name="instanceIdGenerateId" value="WF_INSTANCE_ID" />
     <property name="workflowInstanceSchema" ref="workflowInstanceSchema" />
   </component>

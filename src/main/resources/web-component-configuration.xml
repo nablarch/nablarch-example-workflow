@@ -23,7 +23,7 @@
   <!-- Nablarch共通機能 -->
   <!-- コード機能 -->
   <import file="nablarch/common/code.xml"/>
-  <!-- 自動採番型を持たないRDBMSで、ユニバーサルDAOを使用するための設定 -->
+  
   <import file="nablarch/common/idgenerator.xml" />
   <import file="nablarch/common/dao.xml" />
 
@@ -69,7 +69,6 @@
   <component name="httpErrorHandler" class="nablarch.fw.web.handler.HttpErrorHandler" >
     <property name="defaultPages">
       <map>
-        <!-- TODO: 適切なエラー画面作成して設定してください。設定の際は、あわせてweb.xmlも修正してください -->
         <entry key="4.." value="/errorPages/USER_ERROR.jsp" />
         <entry key="403" value="/errorPages/PERMISSION-ERROR.jsp" />
         <entry key="404" value="/errorPages/PAGE_NOT_FOUND_ERROR.jsp" />
@@ -147,6 +146,8 @@
         <component-ref name="dbStore" />
         <!-- パッケージマッピング-->
         <component-ref name="packageMapping"/>
+        <component-ref name="workflowDefinitionHolder" />
+        <component-ref name="workflowInstanceDao" />
       </list>
     </property>
   </component>

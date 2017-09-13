@@ -1,9 +1,9 @@
 WORKFLOW_ID,DEF_VERSION,FLOW_NODE_ID,GATEWAY_TYPE
 new-card,1,sinsa_gateway,EXCLUSIVE
+loan,1,ExclusiveGateway_4,EXCLUSIVE
+loan,1,ExclusiveGateway_5,EXCLUSIVE
+loan,1,ExclusiveGateway_1,EXCLUSIVE
+loan,1,ExclusiveGateway_2,EXCLUSIVE
+loan,1,ExclusiveGateway_3,EXCLUSIVE
 WF1101,1,ExclusiveGateway_1,EXCLUSIVE
 WF1101,1,ExclusiveGateway_2,EXCLUSIVE
-WF1102,1,ExclusiveGateway_4,EXCLUSIVE
-WF1102,1,ExclusiveGateway_5,EXCLUSIVE
-WF1102,1,ExclusiveGateway_1,EXCLUSIVE
-WF1102,1,ExclusiveGateway_2,EXCLUSIVE
-WF1102,1,ExclusiveGateway_3,EXCLUSIVE
