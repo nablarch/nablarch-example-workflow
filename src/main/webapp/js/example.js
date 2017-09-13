@@ -1,13 +1,16 @@
-$(() => {
+$(initializer);
+
+function initializer() {
 
   // dropdown
   $('.ui.dropdown').dropdown();
 
+  // clsoe message area
   $('.message .close')
       .on('click', function () {
         $(this).closest('.message').transition('fade');
       });
-  
+
   // calendar
   $('.ui.calendar').calendar({
     type     : 'date',
@@ -20,5 +23,4 @@ $(() => {
       }
     }
   });
-  
-});
+}
