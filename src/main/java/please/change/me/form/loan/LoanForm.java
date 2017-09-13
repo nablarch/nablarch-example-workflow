@@ -37,6 +37,7 @@ public class LoanForm implements Serializable {
 
     /** 振込日 */
     @Required
+    @Domain("日付")
     private String transferDate;
 
     /**
