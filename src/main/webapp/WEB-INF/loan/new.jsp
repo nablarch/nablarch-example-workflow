@@ -29,6 +29,9 @@
             <div class="text">万円</div>
           </div>
         </n:forInputPage>
+        <n:forConfirmationPage>
+          <div class="text">万円</div>
+        </n:forConfirmationPage>
       </div>
       <n:error name="form.annualSalary" messageFormat="div" errorCss="ui pointing red basic label" />
     </div>
@@ -42,6 +45,9 @@
             <div class="text">万円</div>
           </div>
         </n:forInputPage>
+        <n:forConfirmationPage>
+          <div class="text">万円</div>
+        </n:forConfirmationPage>
       </div>
       <n:error name="form.loanAmount" messageFormat="div" errorCss="ui pointing red basic label" />
     </div>
