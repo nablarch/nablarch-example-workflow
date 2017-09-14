@@ -41,10 +41,26 @@ public class LoanForm implements Serializable {
     private String transferDate;
 
     /**
-     * 振込日を返す。
-     * @return 振込日
+     * 年収を設定する。
+     * @param annualSalary 年収
      */
-    public String getTransferDate() {
-        return transferDate.replaceAll("/", "");
+    public void setAnnualSalary(final String annualSalary) {
+        this.annualSalary = annualSalary == null ? null : annualSalary.replaceAll(",", "");
+    }
+
+    /**
+     * ローン申請額を設定する。
+     * @param loanAmount ローン申請額
+     */
+    public void setLoanAmount(final String loanAmount) {
+        this.loanAmount = loanAmount == null ? null : loanAmount.replaceAll(",", "");
+    }
+
+    /**
+     * 振込日を設定する。
+     * @param transferDate 振込日
+     */
+    public void setTransferDate(final String transferDate) {
+        this.transferDate = transferDate == null ? null : transferDate.replaceAll("/", "");
     }
 }
