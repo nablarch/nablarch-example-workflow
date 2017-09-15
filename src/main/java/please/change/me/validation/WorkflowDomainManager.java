@@ -1,6 +1,8 @@
 package please.change.me.validation;
 
 import nablarch.core.validation.ee.DomainManager;
+import nablarch.core.validation.ee.Length;
+import nablarch.core.validation.ee.NumberRange;
 
 /**
  * {@link DomainManager} の実装クラス。
@@ -19,6 +21,16 @@ public final class WorkflowDomainManager implements DomainManager<WorkflowDomain
     /**
      * ドメイン定義。
      */
+    @SuppressWarnings("all")
     public static class WorkflowDomainBean {
+
+        @Length(max = 100)
+        public String 会社名;
+
+        @NumberRange(min = 1, max = 9999999, message = "{万円.message}")
+        public String 万円;
+
+        @Date
+        public String 日付;
     }
 }

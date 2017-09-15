@@ -1,0 +1,1 @@
+CREATE SEQUENCE if not exists WF_INSTANCE_ID;

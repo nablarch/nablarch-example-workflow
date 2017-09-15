@@ -21,7 +21,10 @@
 
     <!-- toolsディレクトリへのパス -->
     <nablarch.tools.dir>${project.basedir}/tools</nablarch.tools.dir>
-
+    <user>workflow</user>
+    <password>${user}</password>
+    <url>jdbc:h2:./h2/db/SAMPLE;AUTO_SERVER=TRUE</url>
+    <driver>org.h2.Driver</driver>
   </properties>
 
   <!--
@@ -88,7 +91,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u10</version>
+        <version>5u11</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -131,13 +134,17 @@
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jsr310-adaptor</artifactId>
-      <version>0.0.1</version>
     </dependency>
 
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-slf4j-adaptor</artifactId>
-      <version>1.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
     </dependency>
 
     <dependency>
@@ -177,6 +184,7 @@
       <version>1.16.18</version>
       <scope>provided</scope>
     </dependency>
+    
   </dependencies>
 
   <build>
@@ -207,7 +215,7 @@
               <goal>generate-csv</goal>
             </goals>
             <configuration>
-              <outputPath>src/test/resources/data</outputPath>
+              <outputPath>target/workflow/data</outputPath>
               <configurationFilePath>design/workflow-tool.xml</configurationFilePath>
               <workflowBpmnDir>design/camunda/workflow</workflowBpmnDir>
               <stateMachineBpmnDir>design/camunda/statemachine</stateMachineBpmnDir>
@@ -228,12 +236,12 @@
           </dependency>
         </dependencies>
         <configuration>
-          <driver>org.h2.Driver</driver>
-          <url>jdbc:h2:./h2/db/SAMPLE;AUTO_SERVER=TRUE</url>
+          <driver>${driver}</driver>
+          <url>${url}</url>
           <adminUser>workflow</adminUser>
           <adminPassword>workflow</adminPassword>
-          <user>workflow</user>
-          <password>workflow</password>
+          <user>${user}</user>
+          <password>${password}</password>
           <erdFile>src/main/resources/entity/app.edm</erdFile>
           <schema>PUBLIC</schema>
           <useJSR310>true</useJSR310>
@@ -252,6 +260,49 @@
               <goal>generate-entity</goal>
               <goal>load-data</goal>
             </goals>
+          </execution>
+          <execution>
+            <id>load-workflow-data</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>load-data</goal>
+            </goals>
+            <configuration>
+              <dataDirectory>target/workflow/data</dataDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sql-maven-plugin</artifactId>
+        <version>1.5</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.196</version>
+            <scope>runtime</scope>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <driver>${driver}</driver>
+          <url>${url}</url>
+          <username>${user}</username>
+          <password>${password}</password>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create-sequences</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <configuration>
+              <srcFiles>
+                <srcFile>src/main/resources/entity/ddl/sequence.sql</srcFile>
+              </srcFiles>
+            </configuration>
           </execution>
         </executions>
       </plugin>
