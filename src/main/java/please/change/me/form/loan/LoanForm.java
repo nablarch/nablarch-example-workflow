@@ -16,8 +16,8 @@ import nablarch.core.validation.ee.Required;
 @Getter
 @Setter
 public class LoanForm implements Serializable {
-    
-    @SuppressWarnings("JavaDoc")
+
+    /** シリアルバージョンUID */
     private static final long serialVersionUID = -1L;
 
     /** 勤務先 */
