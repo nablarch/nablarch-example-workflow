@@ -15,10 +15,10 @@ function initializer() {
   $('.ui.calendar').calendar({
     type     : 'date',
     formatter: {
-      date: (date) => {
-        let day = ('0' + date.getDate()).slice(-2);
-        let month = ('0' + (date.getMonth() + 1)).slice(-2);
-        let year = date.getFullYear();
+      date: function(date)  {
+        var day = ('0' + date.getDate()).slice(-2);
+        var month = ('0' + (date.getMonth() + 1)).slice(-2);
+        var year = date.getFullYear();
         return year + '/' + month + '/' + day;
       }
     }
