@@ -51,7 +51,7 @@ public class LoanService {
         // ローン申請登録
         entity.setInsertDateTime(LocalDateTime.now());
         entity.setWfInstanceId(instance.getInstanceId());
-        entity.setLoanAppliStatusCd(LoanApplicationStatus.CREATED.name());
+        entity.setLoanAppliStatusCd(LoanApplicationStatus.CREATED.getValue());
         entity.setLoanAppliVersion(instance.getVersion());
         UniversalDao.insert(entity);
 
@@ -59,8 +59,8 @@ public class LoanService {
         final LoanApplicationHistory history = new LoanApplicationHistory();
         history.setLoanAppliId(entity.getLoanAppliId());
         history.setExecutionerId(entity.getInsertUserId());
-        history.setLoanAppliActionCd(LoanApplicationApplyStatus.REGISTERED.name());
-        history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.name());
+        history.setLoanAppliActionCd(LoanApplicationApplyStatus.REGISTERED.getValue());
+        history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.getValue());
         history.setExecutionerId(entity.getInsertUserId());
         history.setExecutionDateTime(entity.getInsertDateTime());
         

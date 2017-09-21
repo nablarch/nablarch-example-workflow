@@ -57,7 +57,7 @@ public class ApprovalService {
      *
      * @param user 実行ユーザ
      */
-    public void autosScreening(final User user) {
+    public void executeAutoScreening(final User user) {
         final EntityList<LoanApplication> data = UniversalDao.findAllBySqlFile(LoanApplication.class,
                 "SEARCH_AUTO_SCREENING_DATA");
         LOGGER.logInfo("自動審査対象件数: " + data.size());
@@ -85,18 +85,18 @@ public class ApprovalService {
 
         final LoanApplicationHistory history = new LoanApplicationHistory();
         history.setLoanAppliId(loanApplication.getLoanAppliId());
-        history.setLoanAppliActionCd(LoanApplicationApplyStatus.AUTO_SCREENING.name());
+        history.setLoanAppliActionCd(LoanApplicationApplyStatus.AUTO_SCREENING.getValue());
         history.setExecutionerId(user.getUserId());
         history.setExecutionDateTime(LocalDateTime.now());
 
         if (instance.isActive("SURVEY_TASK")) {
             // 調査タスクへ遷移した場合
-            loanApplication.setLoanAppliStatusCd(LoanApplicationStatus.WAIT_INQUIRY.name());
-            history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.name());
+            loanApplication.setLoanAppliStatusCd(LoanApplicationStatus.WAIT_INQUIRY.getValue());
+            history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.getValue());
         } else {
             // 却下に遷移した場合
-            loanApplication.setLoanAppliStatusCd(LoanApplicationStatus.REJECTION.name());
-            history.setLoanAppliResultCd(LoanApplicationResultStatus.REJECTION.name());
+            loanApplication.setLoanAppliStatusCd(LoanApplicationStatus.REJECTION.getValue());
+            history.setLoanAppliResultCd(LoanApplicationResultStatus.REJECTION.getValue());
         }
         UniversalDao.update(loanApplication);
         UniversalDao.insert(history);
@@ -134,7 +134,7 @@ public class ApprovalService {
     public void executeSurvey(
             final LoanApplication loan, final User user, final String surveyComment, final String comment) {
 
-        loan.setLoanAppliStatusCd(LoanApplicationStatus.WAIT_JUDGING.name());
+        loan.setLoanAppliStatusCd(LoanApplicationStatus.WAIT_JUDGING.getValue());
         loan.setSurveyContent(surveyComment);
         
         executeApproval(
@@ -144,8 +144,8 @@ public class ApprovalService {
                 instance -> 
                         instance.completeUserTask(Collections.singletonMap("condition", "ok"), user.getUserId()),
                 history -> {
-                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.SURVEY.name());
-                    history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.name());
+                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.SURVEY.getValue());
+                    history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.getValue());
                     return history;
                 }
         );
@@ -162,7 +162,7 @@ public class ApprovalService {
     public void executeReject(
             final LoanApplication loan, final User user, final String surveyComment, final String comment) {
 
-        loan.setLoanAppliStatusCd(LoanApplicationStatus.REJECTION.name());
+        loan.setLoanAppliStatusCd(LoanApplicationStatus.REJECTION.getValue());
         loan.setSurveyContent(surveyComment);
         executeApproval(
                 loan, 
@@ -171,8 +171,8 @@ public class ApprovalService {
                 instance ->
                         instance.completeUserTask(Collections.singletonMap("condition", "ng"), user.getUserId()),
                 history -> {
-                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.SURVEY.name());
-                    history.setLoanAppliResultCd(LoanApplicationResultStatus.REJECTION.name());
+                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.SURVEY.getValue());
+                    history.setLoanAppliResultCd(LoanApplicationResultStatus.REJECTION.getValue());
                     return history;
                 }
         );
@@ -197,14 +197,14 @@ public class ApprovalService {
                     param.put("limit", loan.getLoanAmount());
                     instance.completeGroupTask(param, user.getUgourpId());
                     if (instance.isActive("EXECUTE")) {
-                        loan.setLoanAppliStatusCd(LoanApplicationStatus.WAIT_COMPLETION.name());
+                        loan.setLoanAppliStatusCd(LoanApplicationStatus.WAIT_COMPLETION.getValue());
                     } else {
-                        loan.setLoanAppliStatusCd(LoanApplicationStatus.UPPER_LEVEL_JUDGING.name());
+                        loan.setLoanAppliStatusCd(LoanApplicationStatus.UPPER_LEVEL_JUDGING.getValue());
                     }
                 },
                 history -> {
-                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.JUDGING.name());
-                    history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.name());
+                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.JUDGING.getValue());
+                    history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.getValue());
                     return history;
                 }
         );
@@ -220,7 +220,7 @@ public class ApprovalService {
     public void executeRejectFromJudge(
             final LoanApplication loan, final User user, final String comment) {
 
-        loan.setLoanAppliStatusCd(LoanApplicationStatus.REJECTION.name());
+        loan.setLoanAppliStatusCd(LoanApplicationStatus.REJECTION.getValue());
         
         executeApproval(
                 loan, 
@@ -229,8 +229,8 @@ public class ApprovalService {
                 instance ->
                         instance.completeGroupTask(Collections.singletonMap("condition", "ng"), user.getUgourpId()),
                 history -> {
-                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.JUDGING.name());
-                    history.setLoanAppliResultCd(LoanApplicationResultStatus.REJECTION.name());
+                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.JUDGING.getValue());
+                    history.setLoanAppliResultCd(LoanApplicationResultStatus.REJECTION.getValue());
                     return history;
                 }
         );
@@ -245,7 +245,7 @@ public class ApprovalService {
      */
     public void executeBack(final LoanApplication loan, final User user, final String comment) {
 
-        loan.setLoanAppliStatusCd(LoanApplicationStatus.RE_WAIT_INQUIRY.name());
+        loan.setLoanAppliStatusCd(LoanApplicationStatus.RE_WAIT_INQUIRY.getValue());
         executeApproval(
                 loan,
                 user,
@@ -253,8 +253,8 @@ public class ApprovalService {
                 instance ->
                         instance.completeGroupTask(Collections.singletonMap("condition", "re"), user.getUgourpId()),
                 history -> {
-                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.JUDGING.name());
-                    history.setLoanAppliResultCd(LoanApplicationResultStatus.BACK.name());
+                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.JUDGING.getValue());
+                    history.setLoanAppliResultCd(LoanApplicationResultStatus.BACK.getValue());
                     return history;
                 }
         );
@@ -269,7 +269,7 @@ public class ApprovalService {
      */
     public void executeUpperLevelJudge(final LoanApplication loan, final User user, final String comment) {
 
-        loan.setLoanAppliStatusCd(LoanApplicationStatus.WAIT_COMPLETION.name());
+        loan.setLoanAppliStatusCd(LoanApplicationStatus.WAIT_COMPLETION.getValue());
         executeApproval(
                 loan,
                 user,
@@ -277,8 +277,8 @@ public class ApprovalService {
                 instance ->
                         instance.completeGroupTask(Collections.singletonMap("condition", "ok"), user.getUgourpId()),
                 history -> {
-                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.UPPER_LEVEL_JUDGING.name());
-                    history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.name());
+                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.UPPER_LEVEL_JUDGING.getValue());
+                    history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.getValue());
                     return history;
                 }
         );
@@ -293,15 +293,15 @@ public class ApprovalService {
      */
     public void executeRejectFromUpperLevelJudge(final LoanApplication loan, final User user, final String comment) {
 
-        loan.setLoanAppliStatusCd(LoanApplicationStatus.REJECTION.name());
+        loan.setLoanAppliStatusCd(LoanApplicationStatus.REJECTION.getValue());
         executeApproval(loan,
                 user,
                 comment,
                 instance ->
                         instance.completeGroupTask(Collections.singletonMap("condition", "ng"), user.getUgourpId()),
                 history -> {
-                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.UPPER_LEVEL_JUDGING.name());
-                    history.setLoanAppliResultCd(LoanApplicationResultStatus.REJECTION.name());
+                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.UPPER_LEVEL_JUDGING.getValue());
+                    history.setLoanAppliResultCd(LoanApplicationResultStatus.REJECTION.getValue());
                     return history;
                 });
     }
@@ -321,12 +321,12 @@ public class ApprovalService {
                 instance -> {
                     instance.completeUserTask(user.getUserId());
                     if (instance.isCompleted()) {
-                        loan.setLoanAppliStatusCd(LoanApplicationStatus.COMPLETED.name());
+                        loan.setLoanAppliStatusCd(LoanApplicationStatus.COMPLETED.getValue());
                     }
                 },
                 history -> {
-                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.EXECUTE.name());
-                    history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.name());
+                    history.setLoanAppliActionCd(LoanApplicationApplyStatus.EXECUTE.getValue());
+                    history.setLoanAppliResultCd(LoanApplicationResultStatus.OK.getValue());
                     return history;
                 });
     }

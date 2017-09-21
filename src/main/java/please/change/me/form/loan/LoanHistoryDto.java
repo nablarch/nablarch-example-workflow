@@ -14,10 +14,9 @@ import please.change.me.domain.code.LoanApplicationResultStatus;
  * @author nabchan
  */
 @Data
-@Entity
 public class LoanHistoryDto {
 
-    /** 実行ユーザー */
+    /** 漢字指名 */
     private String kanjiName;
 
     /** 実行日時 */

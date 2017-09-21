@@ -89,7 +89,7 @@ public class ApprovalAction {
      */
     public HttpResponse auto(final HttpRequest request, final ExecutionContext context) {
         final User user = SessionUtil.get(context, "user");
-        service.autosScreening(user);
+        service.executeAutoScreening(user);
         return new HttpResponse(303, "redirect:///action/approval");
     }
 
@@ -112,7 +112,7 @@ public class ApprovalAction {
             context.setRequestScopedVar("loanApproval", loanApproval);
             SessionUtil.put(context, "loan", loanApproval.getLoanApplication(), "hidden");
         } catch (NotApprovalDataException e) {
-            throw new HttpErrorResponse(404, e);
+            throw new HttpErrorResponse(409, "/WEB-INF/error/RETRY.jsp", e);
         }
         context.setRequestScopedVar("history",
                 UniversalDao.findAllBySqlFile(LoanHistoryDto.class, "FIND_BY_LOAN_ID", new Object[] {id}));

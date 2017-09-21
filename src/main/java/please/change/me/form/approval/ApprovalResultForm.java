@@ -1,5 +1,6 @@
 package please.change.me.form.approval;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +15,10 @@ import please.change.me.domain.code.LoanApplicationStatus;
  */
 @Getter
 @AllArgsConstructor
-public class ApprovalResultForm {
+public class ApprovalResultForm implements Serializable {
+    
+    /** serialVersionUID */
+    private static final long serialVersionUID = -1L;
 
     /** 申請ID */
     private String applicationId;
