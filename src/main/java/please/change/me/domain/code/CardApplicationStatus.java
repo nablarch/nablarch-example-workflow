@@ -1,11 +1,11 @@
-package please.change.me.action;
+package please.change.me.domain.code;
 
 /**
  * カード申し込み状態。
  *
  * @author nabchan
  */
-public enum CardApplicationStatus {
+public enum CardApplicationStatus implements Code {
 
     /** 新規 */
     NEW("新規申し込み"),
@@ -27,11 +27,14 @@ public enum CardApplicationStatus {
         this.label = label;
     }
 
-    /**
-     * ラベル文言を返す。
-     * @return ラベル文言
-     */
-    String getLabel() {
+    @Override
+    public String getLabel() {
         return label;
     }
+
+    @Override
+    public String getValue() {
+        return name();
+    }
+
 }

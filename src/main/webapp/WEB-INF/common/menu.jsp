@@ -13,5 +13,11 @@
         <n:a href="/action/card/new" cssClass="item">カード申し込み</n:a>
       </div>
     </div>
+    <div class="ui simple dropdown item">
+      ステートマシン<i class="dropdown icon"></i>
+      <div class="menu">
+        <n:a href="/action/card/new" cssClass="item">カード申し込み</n:a>
+      </div>
+    </div>
   </div>
 </div>

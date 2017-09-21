@@ -1,9 +1,9 @@
-package please.change.me.action;
+package please.change.me.form.card;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import please.change.me.domain.code.CardApplicationStatus;
 
 /**
  * カード申し込みDTO。
