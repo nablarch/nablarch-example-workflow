@@ -10,7 +10,6 @@
       <div class="menu">
         <n:a href="/action/approval" cssClass="item">申請一覧</n:a>
         <n:a href="/action/loan/new" cssClass="item">ローン申請</n:a>
-        <n:a href="/action/card/new" cssClass="item">カード申し込み</n:a>
       </div>
     </div>
     <div class="ui simple dropdown item">
