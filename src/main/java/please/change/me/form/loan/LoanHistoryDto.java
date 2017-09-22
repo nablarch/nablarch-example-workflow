@@ -16,7 +16,7 @@ import please.change.me.domain.code.LoanApplicationResultStatus;
 @Data
 public class LoanHistoryDto {
 
-    /** 漢字指名 */
+    /** 漢字氏名 */
     private String kanjiName;
 
     /** 実行日時 */
