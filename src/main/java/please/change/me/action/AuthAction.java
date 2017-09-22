@@ -52,7 +52,7 @@ public class AuthAction {
      * @return レスポンス
      */
     public HttpResponse index(final HttpRequest request, final ExecutionContext context) {
-        context.invalidateSession();
+        SessionUtil.invalidate(context);
         context.setRequestScopedVar("userList", UniversalDao.findAll(Users.class));
         return new HttpResponse("/WEB-INF/auth/login.jsp");
     }
@@ -67,7 +67,7 @@ public class AuthAction {
     @InjectForm(form = AuthForm.class)
     @OnError(path = "forward:///", type = ApplicationException.class)
     public HttpResponse login(final HttpRequest request, final ExecutionContext context) {
-        context.invalidateSession();
+        SessionUtil.invalidate(context);
 
         final User user;
         try {
@@ -78,6 +78,17 @@ public class AuthAction {
         }
         context.setRequestScopedVar("user", UniversalDao.findAll(Users.class));
         SessionUtil.put(context, "user", user, "httpSession");
-        return new HttpResponse("redirect:///action/approval");
+        return new HttpResponse(303, "redirect:///action/approval");
+    }
+
+    /**
+     * サインアウトする。
+     * @param request リクエスト
+     * @param context コンテキスト
+     * @return レスポンス
+     */
+    public HttpResponse signout(final HttpRequest request, final ExecutionContext context) {
+        SessionUtil.invalidate(context);
+        return new HttpResponse(303, "redirect:///");
     }
 }

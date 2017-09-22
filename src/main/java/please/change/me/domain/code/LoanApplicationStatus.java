@@ -8,21 +8,31 @@ package please.change.me.domain.code;
 public enum LoanApplicationStatus implements Code {
 
     /** 申請完了 */
-    CREATED("created", "自動審査待ち");
-
-    /** 値 */
-    private final String value;
+    CREATED("自動審査待ち"),
+    /** 調査待ち */
+    WAIT_INQUIRY("調査待ち"),
+    /** 調査待ち(再調査) */
+    RE_WAIT_INQUIRY("調査待ち(再調査)"),
+    /** 却下 */
+    REJECTION("却下"),
+    /** 判定待ち */
+    WAIT_JUDGING("判定待ち"),
+    /** 上位判定待ち */
+    UPPER_LEVEL_JUDGING("上位判定待ち"),
+    /** 審査完了待ち */
+    WAIT_COMPLETION("審査完了待ち"),
+    /** 完了 */
+    COMPLETED("完了");
+    
 
     /** ラベル */
     private final String label;
 
     /**
      * コンストラクタ。
-     * @param value 値
      * @param label ラベル
      */
-    LoanApplicationStatus(final String value, final String label) {
-        this.value = value;
+    LoanApplicationStatus(final String label) {
         this.label = label;
     }
 
@@ -33,6 +43,6 @@ public enum LoanApplicationStatus implements Code {
 
     @Override
     public String getValue() {
-        return value;
+        return name();
     }
 }

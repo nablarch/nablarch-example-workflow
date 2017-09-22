@@ -7,21 +7,26 @@ package please.change.me.domain.code;
  */
 public enum LoanApplicationApplyStatus implements Code {
     /** 登録 */
-    REGISTERED("registered", "登録"), ;
-
-    /** 値 */
-    private final String value;
+    REGISTERED("登録"),
+    /** 自動審査 */
+    AUTO_SCREENING("自動審査"),
+    /** 調査 */
+    SURVEY("調査"),
+    /** 判定 */
+    JUDGING("判定"),
+    /** 上位者判定 */
+    UPPER_LEVEL_JUDGING("上位者判定"),
+    /** 実行 */
+    EXECUTE("実行");
 
     /** ラベル */
     private final String label;
 
     /**
      * コンストラクタ。
-     * @param value 値
      * @param label ラベル
      */
-    LoanApplicationApplyStatus(final String value, final String label) {
-        this.value = value;
+    LoanApplicationApplyStatus(final String label) {
         this.label = label;
     }
 
@@ -32,6 +37,6 @@ public enum LoanApplicationApplyStatus implements Code {
 
     @Override
     public String getValue() {
-        return value;
+        return name();
     }
 }

@@ -17,6 +17,7 @@ import nablarch.core.validation.ee.Required;
 @Setter
 public class AuthForm implements Serializable {
 
+    /** serialVersionUID */
     private static final long serialVersionUID = -1L;
 
     /**
