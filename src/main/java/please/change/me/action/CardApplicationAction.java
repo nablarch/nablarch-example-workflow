@@ -41,7 +41,7 @@ public class CardApplicationAction {
     public HttpResponse list(final HttpRequest request, final ExecutionContext context) {
 
         List<CardApplicationDto> list =
-                UniversalDao.findAllBySqlFile(CardApplication.class,"list_card_application")
+                UniversalDao.findAllBySqlFile(CardApplication.class,"LIST_CARD_APPLICATION")
                             .stream()
                             .map(cardApp -> new CardApplicationDto(
                                     cardApp.getId(),

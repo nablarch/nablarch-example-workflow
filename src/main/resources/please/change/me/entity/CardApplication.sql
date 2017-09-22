@@ -1,16 +1,16 @@
-list_card_application =
-select
+LIST_CARD_APPLICATION =
+SELECT
   ID,
   NAME,
   ANNUAL_INCOME,
   STATUS
-from CARD_APPLICATION
-order by ID
+FROM CARD_APPLICATION
+ORDER BY ID
 
-find_card_application =
-select
+FIND_CARD_APPLICATION =
+SELECT
   WF_INSTANCE_ID,
   ANNUAL_INCOME
-from CARD_APPLICATION
-where id = ?
-  for update
+FROM CARD_APPLICATION
+WHERE ID = ?
+  FOR UPDATE
