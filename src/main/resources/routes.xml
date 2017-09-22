@@ -47,5 +47,12 @@
   <post path="/action/loan/new" to="LoanApplication#createLoan" />
   <get path="/action/loan/new/complete" to="LoanApplication#completeLoan" />
   <post path="/action/loan/new/re" to="LoanApplication#editNewLoan" />
-  
+
+  <!-- カード申請 -->
+  <get path="/action/card/list" to="CardApplication#list" />
+  <get path="/action/card/new" to="CardApplication#newCard" />
+  <post path="/action/card/new" to="CardApplication#createCard"/>
+  <get path="/action/card/sinsa/auto" to="CardApplication#doAutoSinsa"/>
+  <get path="/action/card/sinsa/ok" to="CardApplication#doSinsaOK"/>
+  <get path="/action/card/sinsa/ng" to="CardApplication#doSinsaNG"/>
 </routes>
