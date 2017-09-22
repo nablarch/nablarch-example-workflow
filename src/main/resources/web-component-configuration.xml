@@ -38,10 +38,8 @@
   <!-- インターセプタの実行順定義 -->
   <import file="nablarch/webui/interceptors.xml" />
 
-  <!-- ファイルアップロード機能設定 -->
-  <import file="nablarch/webui/multipart.xml" />
-
   <!-- カスタムタグ設定 -->
+  <import file="tag.xml" />
   <import file="nablarch/webui/nablarch-tag.xml" />
 
   <!-- 二重サブミット防止機能 -->
@@ -69,12 +67,9 @@
   <component name="httpErrorHandler" class="nablarch.fw.web.handler.HttpErrorHandler" >
     <property name="defaultPages">
       <map>
-        <entry key="4.." value="/errorPages/USER_ERROR.jsp" />
-        <entry key="403" value="/errorPages/PERMISSION-ERROR.jsp" />
-        <entry key="404" value="/errorPages/PAGE_NOT_FOUND_ERROR.jsp" />
-        <entry key="413" value="/errorPages/REQUEST_ENTITY_TOO_LARGE.jsp" />
-        <entry key="5.." value="/errorPages/ERROR.jsp" />
-        <entry key="503" value="/errorPages/SERVICE-UNAVAILABLE-ERROR.jsp" />
+        <entry key="4.." value="/WEB-INF/error/USER_ERROR.jsp" />
+        <entry key="404" value="/WEB-INF/error/PAGE_NOT_FOUND_ERROR.jsp" />
+        <entry key="5.." value="/WEB-INF/error/ERROR.jsp" />
       </map>
     </property>
   </component>
@@ -94,8 +89,7 @@
   </component>
   
   <!-- hidden暗号化機能を使用しないリクエストID -->
-  <list name="noHiddenEncryptionRequestIds">
-  </list>
+  <list name="noHiddenEncryptionRequestIds" />
 
   <!-- ハンドラキュー構成 -->
   <component name="webFrontController"
@@ -111,9 +105,9 @@
 
         <component class="nablarch.fw.web.handler.SecureHandler" />
 
-        <component-ref name="multipartHandler"/>
-
         <component-ref name="sessionStoreHandler" />
+        
+        <component class="please.change.me.handler.AuthHandler" />
 
         <component class="nablarch.fw.web.handler.NormalizationHandler" />
 
@@ -122,6 +116,8 @@
         <component-ref name="httpErrorHandler" />
 
         <component-ref name="nablarchTagHandler"/>
+        
+        <component class="please.change.me.handler.ExceptionHandler" />
 
         <component-ref name="dbConnectionManagementHandler"/>
 

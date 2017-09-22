@@ -4,9 +4,42 @@
   <!-- 認証 -->
   <get path="/" to="Auth#index" />
   <post path="/action/auth" to="Auth#login" />
+  <get path="/action/auth/signout" to="Auth#signout" />
   
-  <!-- 承認一覧 -->
-  <get path="/action/approval" to="Approval#index" />
+  <!-- 承認 -->
+  <get path="/action/approval" to="Approval#list" />
+  
+  <!-- タスク完了後に呼ばれるリクエスト -->
+  <match path="/action/approval/complete" to="Approval#completeTask" />
+  
+  <!-- 自動審査 -->
+  <match path="/action/approval/auto" to="Approval#auto" />
+  
+  <!-- 調査 -->
+  <match path="/action/approval/:id/survey" to="Approval#survey" />
+  <match path="/action/approval/:id/reject" to="Approval#reject" />
+  
+  <!-- 判定 -->
+  <match path="/action/approval/:id/judge" to="Approval#judge" />
+  <match path="/action/approval/:id/rejectFromJudge" to="Approval#rejectFromJudge" />
+  <match path="/action/approval/:id/back" to="Approval#back" />
+  
+  <!-- 上位判定 -->
+  <match path="/action/approval/:id/upperLevelJudge" to="Approval#upperLevelJudge" />
+  <match path="/action/approval/:id/rejectFromUpperLevelJudge" to="Approval#rejectFromUpperLevelJudge" />
+  
+  <!-- ローン実行 -->
+  <match path="/action/approval/:id/executeLoan" to="Approval#executeLoan" />
+  
+  <!-- 承認時のエラー遷移先 -->
+  <match path="/action/approval/:id/error" to="Approval#show" />
+  
+  <!-- 詳細 -->
+  <match path="/action/approval/:id" to="Approval#show">
+    <requirements>
+      <requirement name="id" value="\d+$" />
+    </requirements>
+  </match>
   
   <!-- ローン申請 -->
   <get path="/action/loan/new" to="LoanApplication#newLoan" />

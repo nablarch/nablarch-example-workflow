@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration component-configuration.xsd">
+
+  <map name="valueFormatters">
+    <entry key="yyyymmdd">
+      <value-component class="nablarch.common.web.tag.YYYYMMDDFormatter"/>
+    </entry>
+    <entry key="yyyymm">
+      <value-component class="nablarch.common.web.tag.YYYYMMFormatter"/>
+    </entry>
+    <entry key="dateTime">
+      <value-component class="please.change.me.view.DateTimeFormatter"/>
+    </entry>
+    <entry key="decimal">
+      <value-component class="nablarch.common.web.tag.DecimalFormatter"/>
+    </entry>
+  </map>
+  
+</component-configuration>

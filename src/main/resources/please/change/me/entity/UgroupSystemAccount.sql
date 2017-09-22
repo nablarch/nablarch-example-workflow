@@ -1,6 +1,6 @@
 BY_USER=
-select *
-from
-  ugroup_system_account
-where
-  user_id = ?
+SELECT *
+FROM
+  UGROUP_SYSTEM_ACCOUNT
+WHERE
+  USER_ID = ?
