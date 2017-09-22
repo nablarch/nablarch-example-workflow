@@ -4,42 +4,40 @@
 |:-----------|:------------|
 |[![Build Status](https://travis-ci.org/nablarch/nablarch-example-workflow.svg?branch=master)](https://travis-ci.org/nablarch/nablarch-example-workflow)|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-workflow.svg?branch=develop)](https://travis-ci.org/nablarch/nablarch-example-workflow)|
 
-# ディレクトリについての補足
+# 実行手順 
 
-| ディレクトリ               | 補足                                                                                                                                                                             |
-|:---------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|db/data/                    |DBに疎通確認用データを格納するためのSQL文。                                                                                                                                       |
-|db/ddl/                     |Nablarchで使用するテーブルを作成するためのDDL。テーブルを作り直すときに使用するDROP文も用意している。                                                                             |
-|h2/bin/                     |H2 Database Engine(以下H2)に格納されているデータを確認するためのツールが格納されている(本プロジェクトは初期状態でH2を使用する構成になっている)。                                  |
-|h2/db/                      |H2のデータファイルが格納されているディレクトリ。H2のデータが壊れた際は、「SAMPLE.mv.db」を削除し、「SAMPLE.mv.db.org」を、「SAMPLE.mv.db」という名前でコピーすることで復旧できる。|
-|src/env/dev/resources/      |開発環境用の設定ファイルを格納するディレクトリ                                                                                                                                    |
-|src/env/dev/webapp/WEB-INF/ |開発環境用のweb.xmlを格納するディレクトリ                                                                                                                                         |
-|src/env/prod/resources/     |本番環境用の設定ファイルを格納するディレクトリ                                                                                                                                    |
-|src/main/resources/         |開発環境、本番環境、共に使用する設定ファイルを格納するディレクトリ                                                                                                                |
-|src/test/resources/         |自動テスト(ユニットテスト)用の設定ファイルを格納するディレクトリ                                                                                                                  |
-|tools/                      |mavenと連携して動作させるツールの設定を格納するディレクトリ                                                                                                                       |
+## ビルド
 
-# H2に格納されているデータを確認する方法
+``` sh
+mvn clean package
+```
 
-以下の手順で確認する。
+データベースのセットアップとアプリケーションのビルドが実行されます。
 
-1.「mvn waitt:run」でアプリを起動している場合は終了させる。
+## アプリケーション実行
 
-2.h2/bin/h2.batを実行する。
+```
+mvn waitt:run
+```
 
-3.しばらく待つとブラウザが起動するので、各項目に以下の通りに入力し、[Connect]ボタンをクリックする。
-
-| 項目     | 値                  |
-|:---------|:--------------------|
-|JDBC URL  |jdbc:h2:../db/SAMPLE |
-|User Name |SAMPLE               |
-|Password  |SAMPLE               |
-
-4.左側のペインのテーブル名をクリックすると、クリックしたテーブルに対するSELECT文が生成される。
-
-5.[Run]ボタンをクリックすると、生成したSELECT文が実行され、テーブルのデータを確認することができる。
-
-6.使用終了時は、左上のdisconnectボタン(赤色で書かれたアイコンのボタン)をクリックして切断する。
-  **切断を忘れると、WebアプリからH2に接続できなくなる。**
+APサーバが起動し、ブラウザが立ち上がります。
 
 
+# 本アプリケーションで使用するライブラリに関する補足説明
+
+## H2 Database
+
+このアプリケーションは[H2 Database](www.h2database.com/)を使用しています。
+DB接続情報は、pom.xmlの`properties`セクションを参照してください。
+
+## Lombok
+
+このアプリケーションは[Lombok](https://projectlombok.org/)を使用しています。
+
+IDEを使用する場合は、お使いのIDEに応じてLombokプラグインをインストールしてください。
+
+- [IntelliJ IDEA](https://projectlombok.org/setup/intellij)
+- [Eclipse](https://projectlombok.org/setup/eclipse)
+
+
+IDEを使用せずにMavenでビルドおよび実行する場合は、プラグインは不要です。
