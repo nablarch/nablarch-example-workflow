@@ -243,7 +243,6 @@
           <password>${password}</password>
           <erdFile>src/main/resources/entity/app.edm</erdFile>
           <schema>PUBLIC</schema>
-          <useJSR310>true</useJSR310>
           <useAccessor>true</useAccessor>
           <entityPackageName>entity</entityPackageName>
           <rootPackage>please.change.me</rootPackage>
