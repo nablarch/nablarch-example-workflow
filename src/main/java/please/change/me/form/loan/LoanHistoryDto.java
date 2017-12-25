@@ -1,8 +1,6 @@
 package please.change.me.form.loan;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Entity;
+import java.util.Date;
 
 import lombok.Data;
 import please.change.me.domain.code.LoanApplicationApplyStatus;
@@ -20,7 +18,7 @@ public class LoanHistoryDto {
     private String kanjiName;
 
     /** 実行日時 */
-    private LocalDateTime executionDateTime;
+    private Date executionDateTime;
 
     /** ローン申請処理内容コード */
     private String loanAppliActionCd;

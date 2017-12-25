@@ -57,7 +57,7 @@
         <n:forInputPage>
           <i class="calendar icon"></i>
         </n:forInputPage>
-        <n:text name="form.transferDate" placeholder="ローン申請額" valueFormat="yyyymmdd{yyyy/MM/dd}"/>
+        <n:text name="form.transferDate" placeholder="振込日" valueFormat="yyyymmdd{yyyy/MM/dd}"/>
       </div>
       <n:error name="form.transferDate" messageFormat="div" errorCss="ui pointing red basic label" />
     </div>

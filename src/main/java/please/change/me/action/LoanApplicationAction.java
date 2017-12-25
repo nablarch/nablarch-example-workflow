@@ -1,7 +1,5 @@
 package please.change.me.action;
 
-import java.time.LocalDateTime;
-
 import please.change.me.domain.User;
 import please.change.me.entity.LoanApplication;
 import please.change.me.form.loan.LoanForm;
@@ -10,6 +8,7 @@ import please.change.me.service.LoanService;
 import nablarch.common.web.interceptor.InjectForm;
 import nablarch.common.web.session.SessionUtil;
 import nablarch.core.beans.BeanUtil;
+import nablarch.core.date.SystemTimeUtil;
 import nablarch.core.message.ApplicationException;
 import nablarch.fw.ExecutionContext;
 import nablarch.fw.web.HttpRequest;
@@ -78,7 +77,7 @@ public class LoanApplicationAction {
         
         final User user = SessionUtil.get(context, "user");
         entity.setInsertUserId(user.getUserId());
-        entity.setInsertDateTime(LocalDateTime.now());
+        entity.setInsertDateTime(SystemTimeUtil.getDate());
 
         final LoanService service = new LoanService();
         service.applyLoan(entity);

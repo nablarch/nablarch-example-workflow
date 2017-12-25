@@ -1,6 +1,9 @@
 package please.change.me.domain;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -19,7 +22,8 @@ public class Approval {
     private String businessType;
 
     /** 申請日時 */
-    private LocalDateTime applicationDate;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date applicationDate;
 
     /** 申請者名 */
     private String applicationUserName;

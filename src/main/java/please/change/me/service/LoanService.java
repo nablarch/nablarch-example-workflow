@@ -1,6 +1,5 @@
 package please.change.me.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +11,7 @@ import please.change.me.entity.LoanApplicationHistory;
 import please.change.me.entity.Users;
 
 import nablarch.common.dao.UniversalDao;
+import nablarch.core.date.SystemTimeUtil;
 import nablarch.integration.workflow.WorkflowInstance;
 import nablarch.integration.workflow.WorkflowManager;
 
@@ -49,7 +49,7 @@ public class LoanService {
         instance.assignGroup("UPPER_LEVEL_JUDGING", UPPER_LEVEL_JUDGING_GROUP_ID);
         
         // ローン申請登録
-        entity.setInsertDateTime(LocalDateTime.now());
+        entity.setInsertDateTime(SystemTimeUtil.getDate());
         entity.setWfInstanceId(instance.getInstanceId());
         entity.setLoanAppliStatusCd(LoanApplicationStatus.CREATED.getValue());
         entity.setLoanAppliVersion(instance.getVersion());

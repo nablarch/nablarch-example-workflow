@@ -24,6 +24,7 @@ import nablarch.fw.web.HttpErrorResponse;
 import nablarch.fw.web.HttpRequest;
 import nablarch.fw.web.HttpResponse;
 import nablarch.fw.web.interceptor.OnError;
+import nablarch.integration.jsr310.util.DateTimeUtil;
 
 /**
  * 承認に関するアクション。
@@ -68,7 +69,7 @@ public class ApprovalAction {
                                new ApprovalResultForm(
                                        approval.getApplicationId(),
                                        approval.getBusinessType(),
-                                       approval.getApplicationDate(),
+                                       DateTimeUtil.getLocalDateTime(approval.getApplicationDate()),
                                        approval.getApplicationUserName(),
                                        approval.getStatusCd()
                                ))

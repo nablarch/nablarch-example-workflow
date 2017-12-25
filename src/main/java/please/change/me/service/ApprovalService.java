@@ -1,6 +1,5 @@
 package please.change.me.service;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +21,7 @@ import please.change.me.entity.LoanApplicationHistory;
 import nablarch.common.dao.EntityList;
 import nablarch.common.dao.NoDataException;
 import nablarch.common.dao.UniversalDao;
+import nablarch.core.date.SystemTimeUtil;
 import nablarch.core.log.Logger;
 import nablarch.core.log.LoggerManager;
 import nablarch.integration.workflow.WorkflowInstance;
@@ -87,7 +87,7 @@ public class ApprovalService {
         history.setLoanAppliId(loanApplication.getLoanAppliId());
         history.setLoanAppliActionCd(LoanApplicationApplyStatus.AUTO_SCREENING.getValue());
         history.setExecutionerId(user.getUserId());
-        history.setExecutionDateTime(LocalDateTime.now());
+        history.setExecutionDateTime(SystemTimeUtil.getDate());
 
         if (instance.isActive("SURVEY_TASK")) {
             // 調査タスクへ遷移した場合
@@ -363,7 +363,7 @@ public class ApprovalService {
         final LoanApplicationHistory history = new LoanApplicationHistory();
         history.setLoanAppliId(loan.getLoanAppliId());
         history.setExecutionerId(user.getUserId());
-        history.setExecutionDateTime(LocalDateTime.now());
+        history.setExecutionDateTime(SystemTimeUtil.getDate());
         history.setHistoryComment(comment);
         UniversalDao.insert(changeHistory.apply(history));
     }
