@@ -16,75 +16,12 @@
     
     <webxml.path>src/main/webapp/WEB-INF/web.xml</webxml.path>
 
-    <!-- 環境ごとのリソースディレクトリ(プロファイルにより切り替わる) -->
-    <env.resources>${project.basedir}/src/env/${env.dir}/resources</env.resources>
-
-    <!-- toolsディレクトリへのパス -->
-    <nablarch.tools.dir>${project.basedir}/tools</nablarch.tools.dir>
+    <!-- データベースへの接続設定 -->
     <user>workflow</user>
     <password>${user}</password>
     <url>jdbc:h2:./h2/db/SAMPLE;AUTO_SERVER=TRUE</url>
     <driver>org.h2.Driver</driver>
   </properties>
-
-  <!--
-    このプロファイルは環境を指定するものであり、相互に排他的である。
-    複数のプロファイルを同時に指定してはならない。
-  -->
-  <profiles>
-    <!-- 開発環境 -->
-    <profile>
-      <id>development</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <env.name>開発環境</env.name>
-        <!-- Mavenの環境別リソースのディレクトリ名 -->
-        <env.dir>dev</env.dir>
-        <env.classifier>dev</env.classifier>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>com.nablarch.framework</groupId>
-          <artifactId>nablarch-fw-web-hotdeploy</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>com.h2database</groupId>
-          <artifactId>h2</artifactId>
-          <version>1.4.196</version>
-          <scope>runtime</scope>
-        </dependency>
-        <dependency>
-          <groupId>commons-dbcp</groupId>
-          <artifactId>commons-dbcp</artifactId>
-          <version>1.4</version>
-          <scope>runtime</scope>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <!-- 本番環境 -->
-    <profile>
-      <id>prod</id>
-      <properties>
-        <env.name>本番環境</env.name>
-        <env.dir>prod</env.dir>
-        <env.classifier>prod</env.classifier>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>dev-deploy</id>
-      <distributionManagement>
-        <site>
-          <id>dev-deploy</id>
-          <url>${develop_test_report_url}</url>
-        </site>
-      </distributionManagement>
-    </profile>
-
-  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -97,6 +34,18 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  
+  <profiles>
+    <profile>
+      <id>dev-deploy</id>
+      <distributionManagement>
+        <site>
+          <id>dev-deploy</id>
+          <url>${develop_test_report_url}</url>
+        </site>
+      </distributionManagement>
+    </profile>
+  </profiles>
 
 
   <dependencies>
@@ -110,12 +59,6 @@
       <artifactId>nablarch-main-default-configuration</artifactId>
     </dependency>
 
-    <!-- コード管理 -->
-    <dependency>
-      <groupId>com.nablarch.framework</groupId>
-      <artifactId>nablarch-common-code-jdbc</artifactId>
-    </dependency>
-    <!-- UniversalDao使用時、DBに自動採番型が存在しない場合に使用するモジュールが存在している。 -->
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-idgenerator-jdbc</artifactId>
@@ -138,6 +81,19 @@
     <dependency>
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-slf4j-adaptor</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.196</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+      <scope>runtime</scope>
     </dependency>
 
     <dependency>
@@ -188,9 +144,6 @@
 
   <build>
     <resources>
-      <resource>
-        <directory>${env.resources}</directory>
-      </resource>
       <resource>
         <directory>src/main/resources</directory>
       </resource>
@@ -343,12 +296,6 @@
         <version>3.1.0</version>
         <configuration>
           <webXml>${webxml.path}</webXml>
-          <classifier>${env.classifier}</classifier>
-          <archive>
-            <manifestEntries>
-              <Target-Environment>${env.name}</Target-Environment>
-            </manifestEntries>
-          </archive>
         </configuration>
       </plugin>
       <!-- gsp-dba-maven-pluginで自動生成したソースをビルド時に使用するための設定 -->
