@@ -5,7 +5,7 @@
   <artifactId>nablarch-example-workflow</artifactId>
 
   <groupId>com.nablarch.workflow</groupId>
-  <version>5u13</version>
+  <version>5u13-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <properties>
