@@ -77,11 +77,6 @@
       <groupId>com.nablarch.integration</groupId>
       <artifactId>nablarch-jsr310-adaptor</artifactId>
     </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.integration</groupId>
-      <artifactId>nablarch-slf4j-adaptor</artifactId>
-    </dependency>
     
     <dependency>
       <groupId>com.h2database</groupId>

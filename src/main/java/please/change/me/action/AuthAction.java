@@ -78,6 +78,7 @@ public class AuthAction {
         }
         context.setRequestScopedVar("user", UniversalDao.findAll(Users.class));
         SessionUtil.put(context, "user", user, "httpSession");
+        SessionUtil.put(context,"user.id", user.getUserId());
         return new HttpResponse(303, "redirect:///action/approval");
     }
 
