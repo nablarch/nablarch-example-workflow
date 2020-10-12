@@ -1,9 +1,5 @@
 # nablarch-example-workflow
 
-| master | develop |
-|:-----------|:------------|
-|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-workflow.svg?branch=master)](https://travis-ci.org/nablarch/nablarch-example-workflow)|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-workflow.svg?branch=develop)](https://travis-ci.org/nablarch/nablarch-example-workflow)|
-
 # 実行手順 
 
 ## ビルド
