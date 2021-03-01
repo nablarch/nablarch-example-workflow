@@ -25,7 +25,7 @@
   <import file="nablarch/common/dao.xml" />
 
   <!-- データベース接続設定 -->
-  <import file="nablarch/webui/db-for-webui.xml" />
+  <import file="nablarch/core/db-base.xml" />
   <import file="db.xml"/>
 
   <!-- エラーページ設定 -->
