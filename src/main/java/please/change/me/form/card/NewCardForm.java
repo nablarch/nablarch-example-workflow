@@ -1,6 +1,5 @@
 package please.change.me.form.card;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import nablarch.core.validation.ee.Domain;
